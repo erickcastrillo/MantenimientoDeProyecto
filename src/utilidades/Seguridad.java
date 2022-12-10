@@ -47,7 +47,15 @@ public class Seguridad {
                 + "Saludos,\n"
                 + "Equipo de desarrollo de la aplicación";
         usuario.setCódigoDeVerificación(código);
-        utilidades.EnviarCorreo.enviarCorreoJava(usuario.getCorreoElectrónico(), asunto, cuerpo);
+        // Se envía el correo electrónico con el código de verificación
+        // Como el proceso puede tardar, se ejecuta en un hilo aparte y asi evitar bloquear el hilo principal
+        Thread thread = new Thread(() -> {
+            try {
+                EnviarCorreo.enviarCorreoJava(usuario.getCorreoElectrónico(), asunto, cuerpo);
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     // Validar el código de verificación de un usuario

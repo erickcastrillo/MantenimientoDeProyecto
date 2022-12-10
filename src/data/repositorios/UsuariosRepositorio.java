@@ -109,7 +109,7 @@ public class UsuariosRepositorio {
     }
 
     // Devolver un usuario por su numero de teléfono
-    private Usuario getUsuarioPorTeléfono(String teléfono) {
+    public Usuario getUsuarioPorTeléfono(String teléfono) {
         for (Usuario usuario : usuarios) {
             if (usuario.getTeléfono().equals(teléfono)) {
                 return usuario;
@@ -137,5 +137,11 @@ public class UsuariosRepositorio {
     // Constructor
     public UsuariosRepositorio() {
         this.cargarCambios();
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                guardarCambios();
+                System.out.println("Guardando cambios en los usuarios...");
+            }
+        }, "Shutdown-thread"));
     }
 }
