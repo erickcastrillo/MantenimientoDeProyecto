@@ -27,9 +27,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EnviarCorreo {
+    private static final Configuración configuración = Configuración.getInstancia();
     // Enviar correo electrónico en Java a través del servidor SMTP proporcionado por el proveedor de alojamiento
-    public static Boolean enviarCorreoJava(String correoDestino, String asunto, String mensaje) {
-        Configuración configuración = Configuración.getInstancia();
+    public static void enviarCorreoJava(String correoDestino, String asunto, String mensaje) throws MessagingException {
         String from = "erick.castrillo@outlook.com";
         String host = "smtp.sendgrid.net";
 
@@ -56,9 +56,9 @@ public class EnviarCorreo {
             message.setText(mensaje);
 
             Transport.send(message);
-            return true;
         } catch (MessagingException mex) {
-            return false;
+            System.out.println("Error al enviar el correo: " + mex.getMessage());
+            throw mex;
         }
     }
 
@@ -66,7 +66,11 @@ public class EnviarCorreo {
     public static void main(String[] args) {
         // enviarCorreoSendGrid("erick.castrillo@gmail.com", "Prueba de envío de correo", "Este es un mensaje de prueba");
         Thread thread = new Thread(() -> {
-            enviarCorreoJava("erick.castrillo@gmail.com", "Prueba de envío de correo", "Este es un mensaje de prueba");
+            try {
+                enviarCorreoJava("erick.castrillo@gmail.com", "Prueba de envío de correo", "Este es un mensaje de prueba");
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }
         });
         thread.start();
     }

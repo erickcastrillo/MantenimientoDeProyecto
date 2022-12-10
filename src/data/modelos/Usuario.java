@@ -37,7 +37,7 @@ public class Usuario implements Serializable {
     private String clave;
     private Boolean bloqueado;
     private int intentosFallidos;
-    private String códigoDesbloqueo;
+    private String códigoDeVerificación;
 
     public Usuario() {}
 
@@ -51,7 +51,7 @@ public class Usuario implements Serializable {
                    Boolean bloqueado,
                    String correoElectrónico,
                    int intentosFallidos,
-                   String códigoDesbloqueo) {
+                   String códigoDeVerificación) {
         this.cédula = cédula;
         this.nombre = nombre;
         this.primerApellido = primerApellido;
@@ -62,7 +62,7 @@ public class Usuario implements Serializable {
         this.bloqueado = bloqueado;
         this.correoElectrónico = correoElectrónico;
         this.intentosFallidos = intentosFallidos;
-        this.códigoDesbloqueo = códigoDesbloqueo;
+        this.códigoDeVerificación = códigoDeVerificación;
     }
 
     public String getCédula() {
@@ -149,11 +149,11 @@ public class Usuario implements Serializable {
         this.intentosFallidos = intentosFallidos;
     }
 
-    public String getCódigoDesbloqueo() {
-        return códigoDesbloqueo;
+    public String getCódigoDeVerificación() {
+        return códigoDeVerificación;
     }
 
-    public void setCódigoDesbloqueo(String códigoDesbloqueo) {
-        this.códigoDesbloqueo = códigoDesbloqueo;
+    public void setCódigoDeVerificación(String códigoDeVerificación) {
+        this.códigoDeVerificación = códigoDeVerificación;
     }
 }

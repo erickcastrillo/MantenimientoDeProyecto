@@ -17,7 +17,6 @@
 
 package data.repositorios;
 
-import data.modelos.Proyecto;
 import data.modelos.TipoUsuario;
 import data.modelos.Usuario;
 
@@ -92,34 +91,21 @@ public class UsuariosRepositorio {
     // Loguear un usuario
     // Validar el numero de teléfono y la clave
     // si el usuario falla tres veces, bloquearlo
-    public boolean loguearUsuario(String teléfono, String clave) {
+    public Usuario loguearUsuario(String teléfono, String clave) {
         Usuario usuario = getUsuarioPorTeléfono(teléfono);
-        if (usuario != null) {
+        if (usuario != null && !usuario.getBloqueado()) {
             if (usuario.getClave().equals(clave)) {
                 usuario.setIntentosFallidos(0);
-                return true;
+                return usuario;
             } else {
                 usuario.setIntentosFallidos(usuario.getIntentosFallidos() + 1);
                 if (usuario.getIntentosFallidos() >= 3) {
                     usuario.setBloqueado(true);
                 }
-                return false;
+                return null;
             }
         }
-        return false;
-    }
-
-    // Desbloquear un usuario usando su número de teléfono y código de desbloqueo
-    public boolean desbloquearUsuario(String teléfono, String código) {
-        Usuario usuario = getUsuarioPorTeléfono(teléfono);
-        if (usuario != null) {
-            if (usuario.getCódigoDesbloqueo().equals(código)) {
-                usuario.setBloqueado(false);
-                usuario.setIntentosFallidos(0);
-                return true;
-            }
-        }
-        return false;
+        return null;
     }
 
     // Devolver un usuario por su numero de teléfono

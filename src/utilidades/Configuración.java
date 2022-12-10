@@ -29,7 +29,6 @@ public class Configuración {
     public Properties config = new Properties();
     private Configuración() {
         cargar();
-        // config.getProperty("SENDGRID_API_KEY");
     }
     private void cargar() {
         // Cargar configuración de la aplicación
