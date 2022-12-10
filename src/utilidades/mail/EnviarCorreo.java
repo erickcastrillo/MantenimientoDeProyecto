@@ -42,7 +42,7 @@ public class EnviarCorreo {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(
                         "apikey",
-                        "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"
+                        ""
                 );
             }
         });
