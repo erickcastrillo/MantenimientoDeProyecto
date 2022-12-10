@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package utilidades.mail;
+package utilidades;
 
 import java.util.Properties;
 import javax.mail.Message;
@@ -29,6 +29,7 @@ import javax.mail.internet.MimeMessage;
 public class EnviarCorreo {
     // Enviar correo electrónico en Java a través del servidor SMTP proporcionado por el proveedor de alojamiento
     public static Boolean enviarCorreoJava(String correoDestino, String asunto, String mensaje) {
+        Configuración configuración = Configuración.getInstancia();
         String from = "erick.castrillo@outlook.com";
         String host = "smtp.sendgrid.net";
 
@@ -42,7 +43,7 @@ public class EnviarCorreo {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(
                         "apikey",
-                        ""
+                        configuración.config.getProperty("SENDGRID_API_KEY")
                 );
             }
         });
