@@ -124,6 +124,7 @@ public class UsuariosRepositorio {
     }
 
     // Cargar cambios desde disco duro usando serializable
+    @SuppressWarnings("unchecked")
     public void cargarCambios() {
         Object datos = Serializador.deserializar("usuarios.dat");
         if(datos != null){

@@ -133,6 +133,7 @@ public class TareasRepositorio {
     }
 
     // Cargar cambios desde disco duro usando serializable
+    @SuppressWarnings("unchecked")
     public void cargarCambios() {
         Object datos = Serializador.deserializar("tareas.dat");
         if(datos != null){
