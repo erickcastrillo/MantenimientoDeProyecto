@@ -17,6 +17,11 @@
 
 package data.modelos;
 
+/**
+ * Enum usado para definir y restringir los estados en los que se pueden encontrar las tareas o proyectos
+ * @author Erick Castrillo Arroyo <ecastrillo@edu.upolitecnica.cr>
+ * 603630082EC
+ */
 public enum Estado {
     PENDIENTE,
     EN_DESARROLLO,
