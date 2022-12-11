@@ -21,6 +21,9 @@ import data.modelos.Usuario;
 
 import javax.mail.MessagingException;
 
+/**
+ * Clase para manejar la seguridad de la aplicación
+ */
 public class Seguridad {
     // Generar un código aleatorio de 6 caracteres de números y letras
     public static String generarCódigo() {

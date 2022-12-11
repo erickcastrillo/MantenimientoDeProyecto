@@ -26,6 +26,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * Clase para enviar correos electrónicos
+ */
 public class EnviarCorreo {
     private static final Configuración configuración = Configuración.getInstancia();
     // Enviar correo electrónico en Java a través del servidor SMTP proporcionado por el proveedor de alojamiento
