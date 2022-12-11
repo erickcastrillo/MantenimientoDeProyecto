@@ -146,11 +146,9 @@ public class TareasRepositorio {
     // Constructor
     public TareasRepositorio() {
         cargarCambios();
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            public void run() {
-                guardarCambios();
-                System.out.println("Guardando cambios en las tareas...");
-            }
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            guardarCambios();
+            System.out.println("Guardando cambios en las tareas...");
         }, "Shutdown-thread"));
     }
 

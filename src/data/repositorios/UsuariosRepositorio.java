@@ -137,11 +137,9 @@ public class UsuariosRepositorio {
     // Constructor
     public UsuariosRepositorio() {
         this.cargarCambios();
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            public void run() {
-                guardarCambios();
-                System.out.println("Guardando cambios en los usuarios...");
-            }
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            guardarCambios();
+            System.out.println("Guardando cambios en los usuarios...");
         }, "Shutdown-thread"));
     }
 }
