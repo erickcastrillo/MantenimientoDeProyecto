@@ -20,7 +20,6 @@ package main;
 import data.controladores.ProyectoControlador;
 import data.controladores.TareasControlador;
 import data.controladores.UsuarioControlador;
-import data.repositorios.ProyectosRepositorio;
 import gui.LoginWindow;
 
 import javax.swing.*;
