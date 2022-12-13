@@ -42,13 +42,13 @@ public class UsuariosRepositorio {
     }
 
     // Agregar un usuario
-    public void agregarUsuario(Usuario usuario) {
-        usuarios.add(usuario);
+    public Boolean agregarUsuario(Usuario usuario) {
+        return this.usuarios.add(usuario);
     }
 
     // Eliminar un usuario
-    public void eliminarUsuario(String id) {
-        usuarios.remove(getUsuario(id));
+    public Boolean eliminarUsuario(String id) {
+        return usuarios.remove(getUsuario(id));
     }
 
     // Actualizar un usuario
@@ -119,18 +119,20 @@ public class UsuariosRepositorio {
     }
 
     // Guardar cambios en disco duro usando serializable
-    public void guardarCambios() {
-        Serializador.serializar(usuarios, "usuarios.dat");
+    public Boolean guardarCambios() {
+        return Serializador.serializar(usuarios, "usuarios.dat");
     }
 
     // Cargar cambios desde disco duro usando serializable
     @SuppressWarnings("unchecked")
-    public void cargarCambios() {
+    public Boolean cargarCambios() {
         Object datos = Serializador.deserializar("usuarios.dat");
         if(datos != null){
             this.usuarios = (ArrayList<Usuario>) datos;
+            return true;
         } else {
             this.usuarios = new ArrayList<>();
+            return false;
         }
     }
 

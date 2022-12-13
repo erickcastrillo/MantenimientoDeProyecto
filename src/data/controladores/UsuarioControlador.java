@@ -23,45 +23,43 @@ import data.repositorios.UsuariosRepositorio;
 import java.util.ArrayList;
 
 public class UsuarioControlador {
-    private final UsuariosRepositorio usuariosRepositorio;
+    private static final UsuariosRepositorio usuariosRepositorio = new UsuariosRepositorio();
     // Constructor
-    public UsuarioControlador() {
-        usuariosRepositorio = new UsuariosRepositorio();
-    }
+    public UsuarioControlador() {}
     // Devuelve una lista de usuarios
-    public ArrayList<Usuario> listaUsuarios(){
-        return this.usuariosRepositorio.getUsuarios();
+    public static ArrayList<Usuario> listaUsuarios(){
+        return usuariosRepositorio.getUsuarios();
     }
     // Devuelve un usuario por su ID
-    public Usuario getUsuario(String id){
-        return this.usuariosRepositorio.getUsuario(id);
+    public static Usuario getUsuario(String id){
+        return usuariosRepositorio.getUsuario(id);
     }
     // Agrega un usuario
-    public void agregarUsuario(Usuario usuario){
-        this.usuariosRepositorio.agregarUsuario(usuario);
+    public static boolean agregarUsuario(Usuario usuario){
+        return usuariosRepositorio.agregarUsuario(usuario);
     }
     // Elimina un usuario
-    public void eliminarUsuario(String id){
-        this.usuariosRepositorio.eliminarUsuario(id);
+    public static boolean eliminarUsuario(String id){
+        return usuariosRepositorio.eliminarUsuario(id);
     }
     // Actualiza un usuario
-    public void actualizarUsuario(Usuario usuario){
-        this.usuariosRepositorio.actualizarUsuario(usuario);
+    public static void actualizarUsuario(Usuario usuario){
+        usuariosRepositorio.actualizarUsuario(usuario);
     }
     // Devolver todos los usuarios que no son administradores
-    public ArrayList<Usuario> getUsuariosNoAdministradores(){
-        return this.usuariosRepositorio.getUsuariosNoAdmin();
+    public static ArrayList<Usuario> getUsuariosNoAdministradores(){
+        return usuariosRepositorio.getUsuariosNoAdmin();
     }
     // Devolver todos los usuarios que no son administradores ni el usuario actual
-    public ArrayList<Usuario> getUsuariosNoAdministradores(String id){
-        return this.usuariosRepositorio.getUsuariosNoAdminNiActual(id);
+    public static ArrayList<Usuario> getUsuariosNoAdministradores(String id){
+        return usuariosRepositorio.getUsuariosNoAdminNiActual(id);
     }
     // Devolver un usuario por su numero de teléfono
-    public Usuario getUsuarioPorTeléfono(String teléfono){
-        return this.usuariosRepositorio.getUsuarioPorTeléfono(teléfono);
+    public static Usuario getUsuarioPorTeléfono(String teléfono){
+        return usuariosRepositorio.getUsuarioPorTeléfono(teléfono);
     }
     // Loguear un usuario
-    public Usuario loguearUsuario(String teléfono, String clave){
-        return this.usuariosRepositorio.loguearUsuario(teléfono, clave);
+    public static Usuario loguearUsuario(String teléfono, String clave){
+        return usuariosRepositorio.loguearUsuario(teléfono, clave);
     }
 }
