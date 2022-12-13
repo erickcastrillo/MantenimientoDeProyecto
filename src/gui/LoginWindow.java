@@ -59,7 +59,7 @@ public class LoginWindow extends JFrame implements Custumizable {
         setTitle("Login");
         panel = new JPanel();
         panel.setLayout(null);
-        lblUsuario = new JLabel("Usuario");
+        lblUsuario = new JLabel("Teléfono");
         lblUsuario.setBounds(50, 50, 100, 30);
         lblContraseña = new JLabel("Contraseña");
         lblContraseña.setBounds(50, 100, 100, 30);
