@@ -33,12 +33,23 @@ public class Tarea implements Serializable {
     private String proyectoId;
     private Estado estado;
 
-    public Tarea(String nombre, String descripción, String responsableId, String proyectoId, Estado estado) {
+    public String getCometario() {
+        return Cometario;
+    }
+
+    public void setCometario(String cometario) {
+        Cometario = cometario;
+    }
+
+    private String Cometario;
+
+    public Tarea(String nombre, String descripción, String responsableId, String proyectoId, Estado estado, String cometario) {
         this.nombre = nombre;
         this.descripción = descripción;
         this.responsableId = responsableId;
         this.proyectoId = proyectoId;
         this.estado = estado;
+        Cometario = cometario;
     }
 
     public Tarea() {
