@@ -17,12 +17,22 @@
 
 package main;
 
+import data.controladores.ProyectoControlador;
+import data.controladores.TareasControlador;
+import data.controladores.UsuarioControlador;
+import data.repositorios.ProyectosRepositorio;
 import gui.LoginWindow;
 
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
+        // Cargar los usuarios desde el disco
+        UsuarioControlador.cargarDatos();
+        // Cargar los proyectos desde el disco
+        ProyectoControlador.cargarDatos();
+        // Cargar las tareas desde el disco
+        TareasControlador.cargarDatos();
         // Ejecutar la ventana de Login
         SwingUtilities.invokeLater(LoginWindow::new);
     }

@@ -90,6 +90,7 @@ public class ProyectosRepositorio {
     // Cargar cambios desde disco duro usando serializable
     @SuppressWarnings("unchecked")
     public void cargarCambios() {
+        System.out.println("Cargando proyectos...");
         Object datos = Serializador.deserializar("proyectos.dat");
         if(datos != null){
             this.proyectos = (ArrayList<Proyecto>) datos;
@@ -100,7 +101,6 @@ public class ProyectosRepositorio {
 
     // Constructor
     public ProyectosRepositorio() {
-        cargarCambios();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             guardarCambios();
             System.out.println("Guardando cambios en los proyectos...");

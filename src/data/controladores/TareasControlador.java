@@ -24,53 +24,55 @@ import data.repositorios.TareasRepositorio;
 import java.util.ArrayList;
 
 public class TareasControlador {
-    private final TareasRepositorio tareasRepositorio;
+    private static final TareasRepositorio tareasRepositorio = new TareasRepositorio();
     // Constructor
-    public TareasControlador() {
-        this.tareasRepositorio = new TareasRepositorio();
-    }
+    public TareasControlador() { }
     // Devuelve una lista de tareas
-    public ArrayList<Tarea> listaTareas(){
-        return this.tareasRepositorio.getTareas();
+    public static ArrayList<Tarea> listaTareas(){
+        return tareasRepositorio.getTareas();
     }
     // Devuelve una tarea por su ID
-    public Tarea obtenerTarea(String id){
-        return this.tareasRepositorio.getTarea(id);
+    public static Tarea obtenerTarea(String id){
+        return tareasRepositorio.getTarea(id);
     }
     // Agregar una tarea
-    public void agregarTarea(Tarea tarea){
-        this.tareasRepositorio.agregarTarea(tarea);
+    public static void agregarTarea(Tarea tarea){
+        tareasRepositorio.agregarTarea(tarea);
     }
     // Eliminar una tarea
-    public void eliminarTarea(String id){
-        this.tareasRepositorio.eliminarTarea(id);
+    public static void eliminarTarea(String id){
+        tareasRepositorio.eliminarTarea(id);
     }
     // Actualizar una tarea
-    public void actualizarTarea(Tarea tarea){
-        this.tareasRepositorio.actualizarTarea(tarea);
+    public static void actualizarTarea(Tarea tarea){
+        tareasRepositorio.actualizarTarea(tarea);
     }
     // Obtener tareas por estado
-    public ArrayList<Tarea> obtenerTareasPorEstado(Estado estado){
-        return this.tareasRepositorio.getTareasEstado(estado);
+    public static ArrayList<Tarea> obtenerTareasPorEstado(Estado estado){
+        return tareasRepositorio.getTareasEstado(estado);
     }
     // Obtener tareas por responsable
-    public ArrayList<Tarea> obtenerTareasPorResponsable(String responsableId){
-        return this.tareasRepositorio.getTareasUsuario(responsableId);
+    public static ArrayList<Tarea> obtenerTareasPorResponsable(String responsableId){
+        return tareasRepositorio.getTareasUsuario(responsableId);
     }
     // Obtener tareas por proyecto
-    public ArrayList<Tarea> obtenerTareasPorProyecto(String proyectoId){
-        return this.tareasRepositorio.getTareasProyecto(proyectoId);
+    public static ArrayList<Tarea> obtenerTareasPorProyecto(String proyectoId){
+        return tareasRepositorio.getTareasProyecto(proyectoId);
     }
     // Obtener tareas por responsable y estado
-    public ArrayList<Tarea> obtenerTareasPorResponsableYEstado(String responsableId, Estado estado){
-        return this.tareasRepositorio.getTareasProyectoEstado(responsableId, estado);
+    public static ArrayList<Tarea> obtenerTareasPorResponsableYEstado(String responsableId, Estado estado){
+        return tareasRepositorio.getTareasProyectoEstado(responsableId, estado);
     }
     // Devolver las tareas de un proyecto de un usuario
-    public ArrayList<Tarea> obtenerTareasPorProyectoYResponsable(String proyectoId, String responsableId){
-        return this.tareasRepositorio.getTareasProyectoUsuario(proyectoId, responsableId);
+    public static ArrayList<Tarea> obtenerTareasPorProyectoYResponsable(String proyectoId, String responsableId){
+        return tareasRepositorio.getTareasProyectoUsuario(proyectoId, responsableId);
     }
     // Devolver las tareas de un proyecto de un usuario por estado
-    public ArrayList<Tarea> obtenerTareasPorProyectoYResponsableYEstado(String proyectoId, String responsableId, Estado estado){
-        return this.tareasRepositorio.getTareasProyectoUsuarioEstado(proyectoId, responsableId, estado);
+    public static ArrayList<Tarea> obtenerTareasPorProyectoYResponsableYEstado(String proyectoId, String responsableId, Estado estado){
+        return tareasRepositorio.getTareasProyectoUsuarioEstado(proyectoId, responsableId, estado);
+    }
+    // Cargar las tareas desde el disco
+    public static void cargarDatos(){
+        tareasRepositorio.cargarCambios();
     }
 }

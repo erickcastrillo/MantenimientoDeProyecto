@@ -93,15 +93,19 @@ public class UsuariosRepositorio {
     // si el usuario falla tres veces, bloquearlo
     public Usuario loguearUsuario(String teléfono, String clave) {
         Usuario usuario = getUsuarioPorTeléfono(teléfono);
-        if (usuario != null && !usuario.getBloqueado()) {
-            if (usuario.getClave().equals(clave)) {
-                usuario.setIntentosFallidos(0);
-                return usuario;
-            } else {
-                usuario.setIntentosFallidos(usuario.getIntentosFallidos() + 1);
-                if (usuario.getIntentosFallidos() >= 3) {
-                    usuario.setBloqueado(true);
+        if (usuario != null) {
+            if (usuario.getBloqueado() != null || usuario.getBloqueado() != true) {
+                if (usuario.getClave().equals(clave)) {
+                    usuario.setIntentosFallidos(0);
+                    return usuario;
+                } else {
+                    usuario.setIntentosFallidos(usuario.getIntentosFallidos() + 1);
+                    if (usuario.getIntentosFallidos() >= 3) {
+                        usuario.setBloqueado(true);
+                    }
+                    return null;
                 }
+            } else {
                 return null;
             }
         }
@@ -119,26 +123,24 @@ public class UsuariosRepositorio {
     }
 
     // Guardar cambios en disco duro usando serializable
-    public Boolean guardarCambios() {
-        return Serializador.serializar(usuarios, "usuarios.dat");
+    public void guardarCambios() {
+        Serializador.serializar(usuarios, "usuarios.dat");
     }
 
     // Cargar cambios desde disco duro usando serializable
     @SuppressWarnings("unchecked")
-    public Boolean cargarCambios() {
+    public void cargarCambios() {
+        System.out.println("Cargando usuarios...");
         Object datos = Serializador.deserializar("usuarios.dat");
         if(datos != null){
             this.usuarios = (ArrayList<Usuario>) datos;
-            return true;
         } else {
             this.usuarios = new ArrayList<>();
-            return false;
         }
     }
 
     // Constructor
     public UsuariosRepositorio() {
-        this.cargarCambios();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             guardarCambios();
             System.out.println("Guardando cambios en los usuarios...");

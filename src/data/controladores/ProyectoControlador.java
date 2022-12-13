@@ -24,37 +24,41 @@ import data.repositorios.ProyectosRepositorio;
 import java.util.ArrayList;
 
 public class ProyectoControlador {
-    ProyectosRepositorio proyectosRepositorio;
+    private static final ProyectosRepositorio proyectosRepositorio = new ProyectosRepositorio();
     // Constructor
     public ProyectoControlador() {
-        this.proyectosRepositorio = new ProyectosRepositorio();
+
     }
     // Lista de proyectos
-    public ArrayList<Proyecto> listaProyectos(){
-        return this.proyectosRepositorio.getProyectos();
+    public static ArrayList<Proyecto> listaProyectos(){
+        return proyectosRepositorio.getProyectos();
     }
     // Obtener un proyecto por su ID
-    public Proyecto obtenerProyecto(String id){
-        return this.proyectosRepositorio.getProyecto(id);
+    public static Proyecto obtenerProyecto(String id){
+        return proyectosRepositorio.getProyecto(id);
     }
     // Agregar un proyecto
-    public void agregarProyecto(Proyecto proyecto){
-        this.proyectosRepositorio.agregarProyecto(proyecto);
+    public static void agregarProyecto(Proyecto proyecto){
+        proyectosRepositorio.agregarProyecto(proyecto);
     }
     // Eliminar un proyecto
-    public void eliminarProyecto(String id){
-        this.proyectosRepositorio.eliminarProyecto(id);
+    public static void eliminarProyecto(String id){
+        proyectosRepositorio.eliminarProyecto(id);
     }
     // Actualizar un proyecto
-    public void actualizarProyecto(Proyecto proyecto){
-        this.proyectosRepositorio.actualizarProyecto(proyecto);
+    public static void actualizarProyecto(Proyecto proyecto){
+        proyectosRepositorio.actualizarProyecto(proyecto);
     }
     // Obtener proyectos por estado
-    public ArrayList<Proyecto> obtenerProyectosPorEstado(Estado estado){
-        return this.proyectosRepositorio.getProyectosPorEstado(estado);
+    public static ArrayList<Proyecto> obtenerProyectosPorEstado(Estado estado){
+        return proyectosRepositorio.getProyectosPorEstado(estado);
     }
     // Obtener proyectos por responsable
-    public ArrayList<Proyecto> obtenerProyectosPorResponsable(String responsableId){
-        return this.proyectosRepositorio.getProyectosDeUsuario(responsableId);
+    public static ArrayList<Proyecto> obtenerProyectosPorResponsable(String responsableId){
+        return proyectosRepositorio.getProyectosDeUsuario(responsableId);
+    }
+    // Cargar los proyectos desde el disco
+    public static void cargarDatos(){
+        proyectosRepositorio.cargarCambios();
     }
 }

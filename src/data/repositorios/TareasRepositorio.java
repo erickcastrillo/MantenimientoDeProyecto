@@ -135,6 +135,7 @@ public class TareasRepositorio {
     // Cargar cambios desde disco duro usando serializable
     @SuppressWarnings("unchecked")
     public void cargarCambios() {
+        System.out.println("Cargando tareas...");
         Object datos = Serializador.deserializar("tareas.dat");
         if(datos != null){
             this.tareas = (ArrayList<Tarea>) datos;
@@ -145,7 +146,6 @@ public class TareasRepositorio {
 
     // Constructor
     public TareasRepositorio() {
-        cargarCambios();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             guardarCambios();
             System.out.println("Guardando cambios en las tareas...");

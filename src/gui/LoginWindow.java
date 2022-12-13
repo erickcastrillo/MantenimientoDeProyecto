@@ -20,7 +20,6 @@ package gui;
 import data.controladores.UsuarioControlador;
 import data.modelos.Usuario;
 import utilidades.Seguridad;
-import gui.RegistrarWindow;
 
 import javax.mail.MessagingException;
 import javax.swing.*;
@@ -35,12 +34,13 @@ public class LoginWindow extends JFrame implements Custumizable {
     private JButton btnSalir;
     private JButton btnRegistrarse;
     private JButton btnOlvidéMiContraseña;
+    private JButton btnDesbloquearCuenta;
     public LoginWindow() {
         inicializar();
     }
     @Override
     public void inicializar() {
-        setSize(400, 300);
+        setSize(400, 350);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -79,6 +79,9 @@ public class LoginWindow extends JFrame implements Custumizable {
         btnOlvidéMiContraseña = new JButton("Olvidé mi contraseña");
         btnOlvidéMiContraseña.addActionListener(e -> {recuperarContraseña();});
         btnOlvidéMiContraseña.setBounds(200, 200, 150, 30);
+        btnDesbloquearCuenta = new JButton("Desbloquear cuenta");
+        btnDesbloquearCuenta.addActionListener(e -> {desbloquearCuenta();});
+        btnDesbloquearCuenta.setBounds(200, 250, 150, 30);
         panel.add(lblUsuario);
         panel.add(lblContraseña);
         panel.add(txtUsuario);
@@ -87,8 +90,56 @@ public class LoginWindow extends JFrame implements Custumizable {
         panel.add(btnSalir);
         panel.add(btnRegistrarse);
         panel.add(btnOlvidéMiContraseña);
+        panel.add(btnDesbloquearCuenta);
         add(panel);
         setVisible(true);
+    }
+
+    // Desbloquear cuenta
+    private void desbloquearCuenta() {
+        // Solicitar teléfono
+        String teléfono = JOptionPane.showInputDialog(null, "Ingrese su teléfono", "Desbloquear cuenta", JOptionPane.QUESTION_MESSAGE);
+        // Validar teléfono
+        if (teléfono == null || teléfono.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un teléfono", "Desbloquear cuenta", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Buscar usuario por teléfono
+        Usuario usuario = UsuarioControlador.getUsuarioPorTeléfono(teléfono);
+        // Validar usuario
+        if (usuario == null) {
+            JOptionPane.showMessageDialog(null, "No existe un usuario con ese teléfono", "Desbloquear cuenta", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Solicitar código de verificación
+        String código = JOptionPane.showInputDialog(null, "Ingrese el código de verificación", "Desbloquear cuenta", JOptionPane.QUESTION_MESSAGE);
+        // Validar código de verificación
+        if (código == null || código.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un código de verificación", "Desbloquear cuenta", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Validar código de verificación
+        if (!código.equals(usuario.getCódigoDeVerificación())) {
+            JOptionPane.showMessageDialog(null, "El código de verificación es incorrecto", "Desbloquear cuenta", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Crear una contraseña nueva
+        String contraseña = JOptionPane.showInputDialog(null, "Ingrese una nueva contraseña", "Desbloquear cuenta", JOptionPane.QUESTION_MESSAGE);
+        // Volver a validar la contraseña
+        String contraseña2 = JOptionPane.showInputDialog(null, "Ingrese nuevamente la contraseña", "Desbloquear cuenta", JOptionPane.QUESTION_MESSAGE);
+        // Validar contraseñas
+        if (!contraseña.equals(contraseña2)) {
+            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Desbloquear cuenta", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Actualizar contraseña
+        usuario.setClave(contraseña);
+
+        // Desbloquear usuario
+        usuario.setBloqueado(false);
+        usuario.setIntentosFallidos(0);
+        UsuarioControlador.actualizarUsuario(usuario);
+        JOptionPane.showMessageDialog(null, "Cuenta desbloqueada y contraseña restablecida", "Desbloquear cuenta", JOptionPane.INFORMATION_MESSAGE);
     }
 
     // Método para completar el proceso de inicio de sesión
@@ -105,17 +156,49 @@ public class LoginWindow extends JFrame implements Custumizable {
             return;
         }
         // Validar que el usuario y la contraseña sean correctos
-        Usuario usuario = UsuarioControlador.loguearUsuario(nombreUsuario, contraseña);
+        Usuario usuario = UsuarioControlador.getUsuarioPorTeléfono(nombreUsuario);
+        // Validar que el usuario exista
         if (usuario == null) {
             JOptionPane.showMessageDialog(null,
-                    "El usuario y la contraseña no son correctos",
+                    "No se pudo validar las credenciales",
+                    "Login",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Validar que el usuario no esté bloqueado
+        if (usuario.getBloqueado() != null && usuario.getBloqueado()) {
+            JOptionPane.showMessageDialog(null,
+                    "El usuario se encuentra bloqueado",
+                    "Login",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        // Validar que la contraseña sea correcta
+        if (!usuario.getClave().equals(contraseña)) {
+            // Actualizar intentos fallidos
+            usuario.setIntentosFallidos(usuario.getIntentosFallidos() + 1);
+            // Validar si el usuario debe ser bloqueado
+            if (usuario.getIntentosFallidos() >= 3) {
+                usuario.setBloqueado(true);
+            }
+            // Actualizar usuario
+            UsuarioControlador.actualizarUsuario(usuario);
+            JOptionPane.showMessageDialog(null,
+                    "No se pudo validar las credenciales",
                     "Login",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
 
+        // Mostrar mensaje de bienvenida
+        JOptionPane.showMessageDialog(null,
+                "Bienvenido " + usuario.getNombre(),
+                "Login",
+                JOptionPane.INFORMATION_MESSAGE);
+
         // TODO: Abrir la ventana principal
     }
+
 
     // Método para completar el proceso de registro
     public void registrarse() {
@@ -128,12 +211,12 @@ public class LoginWindow extends JFrame implements Custumizable {
     // Método para completar el proceso de recuperación de contraseña
     public void recuperarContraseña() {
         // Obtenemos el número de teléfono del usuario mediante un JOptionPane
-        String telefono = JOptionPane.showInputDialog(null,
+        String teléfono = JOptionPane.showInputDialog(null,
                 "Ingrese su número de teléfono",
                 "Recuperar contraseña",
                 JOptionPane.QUESTION_MESSAGE);
         // Validamos que el número de teléfono no esté vacío ni sea nulo
-        if (telefono == null || telefono.isEmpty()) {
+        if (teléfono == null || teléfono.isEmpty()) {
             JOptionPane.showMessageDialog(null,
                     "El número de teléfono no puede estar vacío",
                     "Recuperar contraseña",
@@ -141,7 +224,7 @@ public class LoginWindow extends JFrame implements Custumizable {
             return;
         }
         // Buscamos el usuario con el número de teléfono ingresado
-        Usuario usuario = UsuarioControlador.getUsuarioPorTeléfono(telefono);
+        Usuario usuario = UsuarioControlador.getUsuarioPorTeléfono(teléfono);
         // Validamos que el usuario exista
         if (usuario == null) {
             JOptionPane.showMessageDialog(null,
@@ -153,6 +236,11 @@ public class LoginWindow extends JFrame implements Custumizable {
         // Enviamos el código de recuperación al usuario
         try {
             Seguridad.enviarCorreoDeVerificación(usuario);
+            // Mostrar mensaje de éxito
+            JOptionPane.showMessageDialog(null,
+                    "Se ha enviado un código de verificación a su correo electrónico",
+                    "Recuperar contraseña",
+                    JOptionPane.INFORMATION_MESSAGE);
         } catch (MessagingException e) {
             JOptionPane.showMessageDialog(null,
                     "No se pudo enviar el correo de verificación",
@@ -160,7 +248,6 @@ public class LoginWindow extends JFrame implements Custumizable {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
     }
 
     // Método para completar el proceso de salir

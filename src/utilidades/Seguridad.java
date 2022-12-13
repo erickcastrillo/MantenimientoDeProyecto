@@ -28,7 +28,7 @@ public class Seguridad {
     // Generar un código aleatorio de 6 caracteres de números y letras
     public static String generarCódigo() {
         StringBuilder código = new StringBuilder();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 10; i++) {
             int num = (int) (Math.random() * 62);
             if (num < 10) {
                 código.append(num);
@@ -59,6 +59,7 @@ public class Seguridad {
                 throw new RuntimeException(e);
             }
         });
+        thread.start();
     }
 
     // Validar el código de verificación de un usuario

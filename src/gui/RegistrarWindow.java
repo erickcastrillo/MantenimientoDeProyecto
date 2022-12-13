@@ -209,7 +209,10 @@ public class RegistrarWindow extends JFrame implements Custumizable {
                 "Login",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-            System.exit(0);
+            SwingUtilities.invokeLater(() -> {
+                new LoginWindow();
+                dispose();
+            });
         }
     }
 }

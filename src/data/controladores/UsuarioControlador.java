@@ -62,4 +62,8 @@ public class UsuarioControlador {
     public static Usuario loguearUsuario(String teléfono, String clave){
         return usuariosRepositorio.loguearUsuario(teléfono, clave);
     }
+    // Cargar los usuarios desde el disco
+    public static void cargarDatos(){
+        usuariosRepositorio.cargarCambios();
+    }
 }
