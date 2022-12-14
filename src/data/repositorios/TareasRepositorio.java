@@ -24,7 +24,7 @@ import data.modelos.Tarea;
 
 public class TareasRepositorio {
     // Array de tareas
-    private ArrayList<Tarea> tareas;
+    private ArrayList<Tarea> tareas = new ArrayList<>();
 
     // Devolver todas las tareas
     public ArrayList<Tarea> getTareas() {

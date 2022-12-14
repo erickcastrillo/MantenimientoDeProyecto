@@ -24,7 +24,7 @@ import java.util.*;
 
 public class ProyectosRepositorio {
     // Array de proyectos
-    private ArrayList<Proyecto> proyectos;
+    private ArrayList<Proyecto> proyectos = new ArrayList<>();
 
     // Devolver todos los proyectos
     public ArrayList<Proyecto> getProyectos() {
