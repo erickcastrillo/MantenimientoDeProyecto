@@ -19,6 +19,9 @@ public class MainWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     public void ocultarTodo (){
+        btnGuardarComentario.setVisible(false);
+        btnGuardarEstado.setVisible(false);
+        cbxEstados.setVisible(false);
         lblNombreProyecto.setVisible(false);
         txtNombreProyecto.setVisible(false);
         
@@ -49,10 +52,6 @@ public class MainWindow extends javax.swing.JFrame {
         btnEliminarTarea.setVisible(false);
         btnEliminarAsociados.setVisible(false);
         btnAgregarEncargadoTarea.setVisible(false);
-        
-       
-        
-        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,7 +73,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblListaDeTareas = new javax.swing.JLabel();
         btnAgregarTarea = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblSeleccioneProyecto = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
         txtEstado = new javax.swing.JTextField();
         btnAgregarProyecto = new javax.swing.JButton();
@@ -93,6 +92,9 @@ public class MainWindow extends javax.swing.JFrame {
         lblListaDeAsociados = new javax.swing.JLabel();
         btnEliminarTarea = new javax.swing.JButton();
         btnAgregarEncargadoTarea = new javax.swing.JButton();
+        cbxEstados = new javax.swing.JComboBox<>();
+        btnGuardarEstado = new javax.swing.JButton();
+        btnGuardarComentario = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         jMenu1.setText("jMenu1");
@@ -138,7 +140,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblListaDeTareas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblListaDeTareas.setText("Tareas");
         lblListaDeTareas.setName("lblListaDeTareas"); // NOI18N
-        getContentPane().add(lblListaDeTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, -1, -1));
+        getContentPane().add(lblListaDeTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, -1, -1));
 
         btnAgregarTarea.setText("Agregar Tarea");
         btnAgregarTarea.setName("btnAgregarTarea"); // NOI18N
@@ -153,9 +155,10 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel4.setText("Control de Proyectos");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Seleccione el Proyecto");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
+        lblSeleccioneProyecto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSeleccioneProyecto.setText("Seleccione el Proyecto");
+        lblSeleccioneProyecto.setName("lblSeleccioneProyecto"); // NOI18N
+        getContentPane().add(lblSeleccioneProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
 
         lblEstado.setText("Estado:");
         lblEstado.setName("lblEstado"); // NOI18N
@@ -171,7 +174,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnAgregarProyectoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 40));
+        getContentPane().add(btnAgregarProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, 40));
 
         lblDescripcion.setText("Descripción:");
         lblDescripcion.setName("lblDescripcion"); // NOI18N
@@ -182,20 +185,30 @@ public class MainWindow extends javax.swing.JFrame {
 
         btnAgregarComentario.setText("Agregar Comentario");
         btnAgregarComentario.setName("btnAgregarComentario"); // NOI18N
-        getContentPane().add(btnAgregarComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, 40));
+        btnAgregarComentario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarComentarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAgregarComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 140, 30));
 
         btnCambiarEstado.setText("Cambiar Estado");
         btnCambiarEstado.setName("btnCambiarEstado"); // NOI18N
-        getContentPane().add(btnCambiarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 120, 40));
+        btnCambiarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCambiarEstadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCambiarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 120, 40));
 
-        btnGuardarProyecto.setText("Guardar Proyecto");
+        btnGuardarProyecto.setText("Guardar ");
         btnGuardarProyecto.setName("btnGuardarProyecto"); // NOI18N
         btnGuardarProyecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarProyectoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardarProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 140, 30));
+        getContentPane().add(btnGuardarProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 120, 40));
 
         btnGuardarTarea.setText("Guardar Tarea");
         btnGuardarTarea.setName("btnGuardarTarea"); // NOI18N
@@ -204,55 +217,105 @@ public class MainWindow extends javax.swing.JFrame {
                 btnGuardarTareaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
-        getContentPane().add(txtNombreTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 170, 340, -1));
+        getContentPane().add(btnGuardarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, 40));
+        getContentPane().add(txtNombreTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 170, 300, -1));
 
         lblNombreTarea.setText("Nombre tarea:");
         lblNombreTarea.setName("lblNombreTarea"); // NOI18N
-        getContentPane().add(lblNombreTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
+        getContentPane().add(lblNombreTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 170, -1, -1));
 
         btnAgregarAsociados.setText("Agregar Asociados");
         btnAgregarAsociados.setName("btnAgregarAsociados"); // NOI18N
-        getContentPane().add(btnAgregarAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, 20));
+        getContentPane().add(btnAgregarAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 140, 30));
 
         btnEliminarAsociados.setText("Eliminar Asociados");
         btnEliminarAsociados.setName("btnEliminarAsociados"); // NOI18N
-        getContentPane().add(btnEliminarAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, -1));
+        getContentPane().add(btnEliminarAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 130, 30));
 
         lblComentario.setText("Comentario:");
         lblComentario.setName("lblComentario"); // NOI18N
-        getContentPane().add(lblComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, -1, -1));
+        getContentPane().add(lblComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, -1, -1));
 
         txtComentario.setName("txtComentario"); // NOI18N
-        getContentPane().add(txtComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, 340, -1));
+        getContentPane().add(txtComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 210, 300, -1));
 
         lblListaDeAsociados.setText("Lista de asociados");
         lblListaDeAsociados.setName("lblListaDeAsociados"); // NOI18N
-        getContentPane().add(lblListaDeAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, -1, -1));
+        getContentPane().add(lblListaDeAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, -1, -1));
 
         btnEliminarTarea.setText("Eliminar Tarea");
         btnEliminarTarea.setName("btnEliminarTarea"); // NOI18N
-        getContentPane().add(btnEliminarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
+        getContentPane().add(btnEliminarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, 30));
 
-        btnAgregarEncargadoTarea.setText("Agregar Encargado de tarea");
+        btnAgregarEncargadoTarea.setText("Agregar Encargado");
         btnAgregarEncargadoTarea.setName("btnAgregarEncargadoTarea"); // NOI18N
-        getContentPane().add(btnAgregarEncargadoTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
+        getContentPane().add(btnAgregarEncargadoTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 140, 40));
+
+        cbxEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Pendiente", "En desarrollo", "Suspendida", "Cancelada", "Terminada" }));
+        cbxEstados.setName("cbxEstados"); // NOI18N
+        cbxEstados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxEstadosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbxEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, 120, 40));
+
+        btnGuardarEstado.setText("Guardar Estado");
+        btnGuardarEstado.setName("btnGuardarEstado"); // NOI18N
+        btnGuardarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarEstadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnGuardarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 120, 40));
+
+        btnGuardarComentario.setText("Guardar Comentario");
+        btnGuardarComentario.setName("btnGuardarComentario"); // NOI18N
+        btnGuardarComentario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarComentarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnGuardarComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, -1, 30));
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     public void botonGuardarProyecto()
     {
+        lblSeleccioneProyecto.setVisible(false);
+        cbxProyectos.setVisible(false);
+        lblNombreProyecto.setVisible(true);
         txtNombreProyecto.setEnabled(false);
-        txtEncargado.setEnabled(false);
-        txtDescripcion.setEnabled(false);
-        btnGuardarProyecto.setVisible(false);
-        btnAgregarProyecto.setVisible(true);
-        btnAgregarTarea.setVisible(true);
-        btnAgregarAsociados.setVisible(true);
-        btnAgregarAsociados.setVisible(true);
-       
         
+        lblEncargado.setVisible(true);
+        txtEncargado.setEnabled(false);
+        
+        lblDescripcion.setVisible(true);
+        txtDescripcion.setEnabled(false);
+        
+        lblEstado.setVisible(true);
+        txtEstado.setEnabled(false); 
+        
+        lblNombreTarea.setVisible(false);
+        txtNombreTarea.setEnabled(false);
+        
+        lblComentario.setVisible(false);
+        txtComentario.setEnabled(false);
+        
+        lblListaDeTareas.setVisible(false);
+        lblListaDeAsociados.setVisible(false);
+        
+        btnAgregarTarea.setVisible(true);
+        btnAgregarComentario.setVisible(true);
+        btnCambiarEstado.setVisible(true);
+        btnGuardarProyecto.setVisible(false);
+        btnGuardarTarea.setVisible(false);
+        btnAgregarAsociados.setVisible(true);
+        btnEliminarTarea.setVisible(false);
+        btnEliminarAsociados.setVisible(false);
+        btnAgregarEncargadoTarea.setVisible(true);
+        btnEliminarAsociados.setVisible(true);
         
     }
     private void btnGuardarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProyectoActionPerformed
@@ -264,7 +327,6 @@ public class MainWindow extends javax.swing.JFrame {
         txtNombreProyecto.setVisible(true);
         txtNombreProyecto.setEnabled(true);
         txtNombreProyecto.setText("");
-        
         
         lblEncargado.setVisible(true);
         txtEncargado.setVisible(true);
@@ -298,6 +360,8 @@ public class MainWindow extends javax.swing.JFrame {
         btnAgregarAsociados.setVisible(false);
         btnEliminarTarea.setVisible(false);
         btnEliminarAsociados.setVisible(false);
+        lblSeleccioneProyecto.setVisible(false);
+        cbxProyectos.setVisible(false);
         
     }
     private void btnAgregarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProyectoActionPerformed
@@ -305,11 +369,10 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarProyectoActionPerformed
     public void botonAgregarTarea()
     {
-        btnAgregarTarea.setVisible(false);
-        btnAgregarProyecto.setVisible(false);
         lblNombreTarea.setVisible(true);
+        txtNombreTarea.setEnabled(true);
         txtNombreTarea.setVisible(true);
-        btnAgregarAsociados.setVisible(false);
+        btnAgregarTarea.setVisible(false);
         btnGuardarTarea.setVisible(true);
         
     }
@@ -318,17 +381,51 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarTareaActionPerformed
     public void botonGuardarTarea()
     {
-        txtNombreTarea.setText("");
-        txtNombreTarea.setVisible(false);
+        //metodo de guardar
         lblNombreTarea.setVisible(false);
+        txtNombreTarea.setText("");
         btnAgregarTarea.setVisible(true);
-        btnAgregarProyecto.setVisible(true);
         btnGuardarTarea.setVisible(false);
-        btnAgregarAsociados.setVisible(true);
+        txtNombreTarea.setVisible(false);
+        btnEliminarTarea.setVisible(true);
+        
     }
     private void btnGuardarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTareaActionPerformed
         botonGuardarTarea();
     }//GEN-LAST:event_btnGuardarTareaActionPerformed
+
+    private void cbxEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEstadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxEstadosActionPerformed
+
+    private void btnCambiarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarEstadoActionPerformed
+        cbxEstados.setVisible(true);
+        btnCambiarEstado.setVisible(false);
+        btnGuardarEstado.setVisible(true);
+    }//GEN-LAST:event_btnCambiarEstadoActionPerformed
+
+    private void btnGuardarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEstadoActionPerformed
+        cbxEstados.setVisible(false);
+        btnCambiarEstado.setVisible(true);
+        btnGuardarEstado.setVisible(false);
+    }//GEN-LAST:event_btnGuardarEstadoActionPerformed
+
+    private void btnAgregarComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarComentarioActionPerformed
+        btnAgregarComentario.setVisible(false);
+        lblComentario.setVisible(true);
+        txtComentario.setVisible(true);
+        txtComentario.setEnabled(true);
+        btnGuardarComentario.setVisible(true);
+    }//GEN-LAST:event_btnAgregarComentarioActionPerformed
+
+    private void btnGuardarComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarComentarioActionPerformed
+        // metodo de guardar comentario en el array
+        btnGuardarComentario.setVisible(false);
+        btnAgregarComentario.setVisible(true);
+        txtComentario.setText("");
+        lblComentario.setVisible(false);
+        txtComentario.setVisible(false);
+    }//GEN-LAST:event_btnGuardarComentarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,11 +471,13 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnCambiarEstado;
     private javax.swing.JButton btnEliminarAsociados;
     private javax.swing.JButton btnEliminarTarea;
+    private javax.swing.JButton btnGuardarComentario;
+    private javax.swing.JButton btnGuardarEstado;
     private javax.swing.JButton btnGuardarProyecto;
     private javax.swing.JButton btnGuardarTarea;
+    private javax.swing.JComboBox<String> cbxEstados;
     private javax.swing.JComboBox<String> cbxProyectos;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -390,6 +489,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblListaDeTareas;
     private javax.swing.JLabel lblNombreProyecto;
     private javax.swing.JLabel lblNombreTarea;
+    private javax.swing.JLabel lblSeleccioneProyecto;
     public javax.swing.JTable tblPrincipal;
     private javax.swing.JTextField txtComentario;
     private javax.swing.JTextField txtDescripcion;
