@@ -158,7 +158,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnAgregarTareaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, 40));
+        getContentPane().add(btnAgregarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Control de Proyectos");
@@ -438,7 +438,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
     private void btnGuardarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTareaActionPerformed
         botonGuardarTarea();
-        ArrayList<Tarea> listaTareas= TareasRepositorio.getTareas(); 
+        ArrayList<Tarea> listaTareas= TareasControlador.listaTareas(); 
         actualizarTablaDeTareas(listaTareas);
         
         /*  public static ArrayList<Tarea> listaTareas(){
