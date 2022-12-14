@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class UsuariosRepositorio {
     // ArrayList de usuarios
-    private ArrayList<Usuario> usuarios;
+    private ArrayList<Usuario> usuarios = new ArrayList<>();
 
     // Devolver todos los usuarios
     public ArrayList<Usuario> getUsuarios() {
