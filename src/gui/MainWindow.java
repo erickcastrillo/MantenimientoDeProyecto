@@ -37,8 +37,8 @@ public class MainWindow extends javax.swing.JFrame {
         lblEncargado.setVisible(false);
         txtEncargado.setVisible(false);
         
-        lblDescripcion.setVisible(false);
-        txtDescripcion.setVisible(false);
+        lblDescripcionProyecto.setVisible(false);
+        txtDescripcionProyecto.setVisible(false);
         
         lblEstado.setVisible(false);
         txtEstado.setVisible(false); 
@@ -46,8 +46,8 @@ public class MainWindow extends javax.swing.JFrame {
         lblNombreTarea.setVisible(false);
         txtNombreTarea.setVisible(false);
         
-        lblComentario.setVisible(false);
-        txtComentario.setVisible(false);
+        lblComentarioTarea.setVisible(false);
+        txtTareaDescripcion.setVisible(false);
         
         lblListaDeTareas.setVisible(false);
         lblListaDeAsociados.setVisible(false);
@@ -86,8 +86,8 @@ public class MainWindow extends javax.swing.JFrame {
         lblEstado = new javax.swing.JLabel();
         txtEstado = new javax.swing.JTextField();
         btnAgregarProyecto = new javax.swing.JButton();
-        lblDescripcion = new javax.swing.JLabel();
-        txtDescripcion = new javax.swing.JTextField();
+        lblDescripcionProyecto = new javax.swing.JLabel();
+        txtDescripcionProyecto = new javax.swing.JTextField();
         btnAgregarComentario = new javax.swing.JButton();
         btnCambiarEstado = new javax.swing.JButton();
         btnGuardarProyecto = new javax.swing.JButton();
@@ -96,8 +96,8 @@ public class MainWindow extends javax.swing.JFrame {
         lblNombreTarea = new javax.swing.JLabel();
         btnAgregarAsociados = new javax.swing.JButton();
         btnEliminarAsociados = new javax.swing.JButton();
-        lblComentario = new javax.swing.JLabel();
-        txtComentario = new javax.swing.JTextField();
+        lblComentarioTarea = new javax.swing.JLabel();
+        txtTareaDescripcion = new javax.swing.JTextField();
         lblListaDeAsociados = new javax.swing.JLabel();
         btnEliminarTarea = new javax.swing.JButton();
         btnAgregarEncargadoTarea = new javax.swing.JButton();
@@ -158,7 +158,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnAgregarTareaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, 40));
+        getContentPane().add(btnAgregarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Control de Proyectos");
@@ -185,12 +185,12 @@ public class MainWindow extends javax.swing.JFrame {
         });
         getContentPane().add(btnAgregarProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, 40));
 
-        lblDescripcion.setText("Descripción:");
-        lblDescripcion.setName("lblDescripcion"); // NOI18N
-        getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        lblDescripcionProyecto.setText("Descripción del Proyecto:");
+        lblDescripcionProyecto.setName("lblDescripcionProyecto"); // NOI18N
+        getContentPane().add(lblDescripcionProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
-        txtDescripcion.setName("txtDescripcion"); // NOI18N
-        getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 1000, 30));
+        txtDescripcionProyecto.setName("txtDescripcionProyecto"); // NOI18N
+        getContentPane().add(txtDescripcionProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 930, 30));
 
         btnAgregarComentario.setText("Agregar Comentario");
         btnAgregarComentario.setName("btnAgregarComentario"); // NOI18N
@@ -241,12 +241,17 @@ public class MainWindow extends javax.swing.JFrame {
         btnEliminarAsociados.setName("btnEliminarAsociados"); // NOI18N
         getContentPane().add(btnEliminarAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 130, 30));
 
-        lblComentario.setText("Comentario:");
-        lblComentario.setName("lblComentario"); // NOI18N
-        getContentPane().add(lblComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, -1, -1));
+        lblComentarioTarea.setText("Descripcion Tarea:");
+        lblComentarioTarea.setName("lblComentarioTarea"); // NOI18N
+        getContentPane().add(lblComentarioTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, -1, -1));
 
-        txtComentario.setName("txtComentario"); // NOI18N
-        getContentPane().add(txtComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 210, 300, -1));
+        txtTareaDescripcion.setName("txtTareaDescripcion"); // NOI18N
+        txtTareaDescripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTareaDescripcionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtTareaDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 210, 290, -1));
 
         lblListaDeAsociados.setText("Lista de asociados");
         lblListaDeAsociados.setName("lblListaDeAsociados"); // NOI18N
@@ -305,8 +310,8 @@ public class MainWindow extends javax.swing.JFrame {
         lblEncargado.setVisible(true);
         txtEncargado.setEnabled(false);
         
-        lblDescripcion.setVisible(true);
-        txtDescripcion.setEnabled(false);
+        lblDescripcionProyecto.setVisible(true);
+        txtDescripcionProyecto.setEnabled(false);
         
         lblEstado.setVisible(true);
         txtEstado.setEnabled(false); 
@@ -314,8 +319,8 @@ public class MainWindow extends javax.swing.JFrame {
         lblNombreTarea.setVisible(false);
         txtNombreTarea.setEnabled(false);
         
-        lblComentario.setVisible(false);
-        txtComentario.setEnabled(false);
+        lblComentarioTarea.setVisible(false);
+        txtTareaDescripcion.setEnabled(false);
         
         lblListaDeTareas.setVisible(false);
         lblListaDeAsociados.setVisible(false);
@@ -347,10 +352,10 @@ public class MainWindow extends javax.swing.JFrame {
         txtEncargado.setEnabled(true);
         txtEncargado.setText("");
         
-        lblDescripcion.setVisible(true);
-        txtDescripcion.setVisible(true);
-        txtDescripcion.setEnabled(true);
-        txtDescripcion.setText("");
+        lblDescripcionProyecto.setVisible(true);
+        txtDescripcionProyecto.setVisible(true);
+        txtDescripcionProyecto.setEnabled(true);
+        txtDescripcionProyecto.setText("");
         
         btnAgregarProyecto.setVisible(false);
         btnGuardarProyecto.setVisible(true);
@@ -361,8 +366,8 @@ public class MainWindow extends javax.swing.JFrame {
         lblNombreTarea.setVisible(false);
         txtNombreTarea.setVisible(false);
         
-        lblComentario.setVisible(false);
-        txtComentario.setVisible(false);
+        lblComentarioTarea.setVisible(false);
+        txtTareaDescripcion.setVisible(false);
         
         lblListaDeTareas.setVisible(false);
         lblListaDeAsociados.setVisible(false);
@@ -382,7 +387,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void btnAgregarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProyectoActionPerformed
         Proyecto proyecto = new Proyecto();
         proyecto.setNombre(txtNombreProyecto.getText());
-        proyecto.setDescripción(txtDescripcion.getText());
+        proyecto.setDescripción(txtDescripcionProyecto.getText());
         ProyectoControlador.agregarProyecto(proyecto);
         botonAgregarProyecto();
     }//GEN-LAST:event_btnAgregarProyectoActionPerformed
@@ -393,14 +398,15 @@ public class MainWindow extends javax.swing.JFrame {
         txtNombreTarea.setVisible(true);
         btnAgregarTarea.setVisible(false);
         btnGuardarTarea.setVisible(true);
+        lblComentarioTarea.setVisible(true);
+        txtTareaDescripcion.setVisible(true);
+        txtTareaDescripcion.setEnabled(true);
+        txtTareaDescripcion.setText("");
+        
         
     }
     private void btnAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTareaActionPerformed
-        Tarea tarea = new Tarea();
-        //ArrayList<Tarea> listadetareas = TareasControlador.listaTareas();
-        tarea.setNombre(txtNombreTarea.getText());
-        tarea.setProyectoId(proyectoId);
-        TareasControlador.agregarTarea(tarea);
+       
         botonAgregarTarea();
     }//GEN-LAST:event_btnAgregarTareaActionPerformed
     public String tareaId;
@@ -437,6 +443,12 @@ public class MainWindow extends javax.swing.JFrame {
         tblPrincipal.setModel(modelo);
     }
     private void btnGuardarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTareaActionPerformed
+        Tarea tarea = new Tarea();
+        //ArrayList<Tarea> listadetareas = TareasControlador.listaTareas();
+        tarea.setNombre(txtNombreTarea.getText());
+        tarea.setProyectoId(proyectoId);
+        tarea.setDescripción(txtTareaDescripcion.getText());
+        TareasControlador.agregarTarea(tarea);
         botonGuardarTarea();
         ArrayList<Tarea> listaTareas= TareasControlador.listaTareas(); 
         actualizarTablaDeTareas(listaTareas);
@@ -463,9 +475,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void btnAgregarComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarComentarioActionPerformed
         btnAgregarComentario.setVisible(false);
-        lblComentario.setVisible(true);
-        txtComentario.setVisible(true);
-        txtComentario.setEnabled(true);
+        lblComentarioTarea.setVisible(true);
+        txtTareaDescripcion.setVisible(true);
+        txtTareaDescripcion.setEnabled(true);
         btnGuardarComentario.setVisible(true);
     }//GEN-LAST:event_btnAgregarComentarioActionPerformed
 
@@ -473,14 +485,18 @@ public class MainWindow extends javax.swing.JFrame {
         // metodo de guardar comentario en el array
         btnGuardarComentario.setVisible(false);
         btnAgregarComentario.setVisible(true);
-        txtComentario.setText("");
-        lblComentario.setVisible(false);
-        txtComentario.setVisible(false);
+        txtTareaDescripcion.setText("");
+        lblComentarioTarea.setVisible(false);
+        txtTareaDescripcion.setVisible(false);
     }//GEN-LAST:event_btnGuardarComentarioActionPerformed
 
     private void btnAgregarEncargadoTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEncargadoTareaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarEncargadoTareaActionPerformed
+
+    private void txtTareaDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTareaDescripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTareaDescripcionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -536,8 +552,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblComentario;
-    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblComentarioTarea;
+    private javax.swing.JLabel lblDescripcionProyecto;
     private javax.swing.JLabel lblEncargado;
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblListaDeAsociados;
@@ -546,11 +562,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombreTarea;
     private javax.swing.JLabel lblSeleccioneProyecto;
     public javax.swing.JTable tblPrincipal;
-    private javax.swing.JTextField txtComentario;
-    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtDescripcionProyecto;
     private javax.swing.JTextField txtEncargado;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNombreProyecto;
     private javax.swing.JTextField txtNombreTarea;
+    private javax.swing.JTextField txtTareaDescripcion;
     // End of variables declaration//GEN-END:variables
 }

@@ -156,7 +156,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="140" width="-1" height="40"/>
+          <AbsoluteConstraints x="160" y="180" width="-1" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -222,10 +222,10 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblDescripcion">
+    <Component class="javax.swing.JLabel" name="lblDescripcionProyecto">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Descripci&#xf3;n:"/>
-        <Property name="name" type="java.lang.String" value="lblDescripcion" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="Descripci&#xf3;n del Proyecto:"/>
+        <Property name="name" type="java.lang.String" value="lblDescripcionProyecto" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -233,13 +233,13 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDescripcion">
+    <Component class="javax.swing.JTextField" name="txtDescripcionProyecto">
       <Properties>
-        <Property name="name" type="java.lang.String" value="txtDescripcion" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="txtDescripcionProyecto" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="80" y="110" width="1000" height="30"/>
+          <AbsoluteConstraints x="150" y="110" width="930" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -339,10 +339,10 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblComentario">
+    <Component class="javax.swing.JLabel" name="lblComentarioTarea">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Comentario:"/>
-        <Property name="name" type="java.lang.String" value="lblComentario" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="Descripcion Tarea:"/>
+        <Property name="name" type="java.lang.String" value="lblComentarioTarea" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -350,13 +350,16 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtComentario">
+    <Component class="javax.swing.JTextField" name="txtTareaDescripcion">
       <Properties>
-        <Property name="name" type="java.lang.String" value="txtComentario" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="txtTareaDescripcion" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTareaDescripcionActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="820" y="210" width="300" height="-1"/>
+          <AbsoluteConstraints x="830" y="210" width="290" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
