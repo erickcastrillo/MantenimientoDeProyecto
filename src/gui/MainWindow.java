@@ -4,6 +4,15 @@
  */
 package gui;
 
+import data.controladores.ProyectoControlador;
+import data.controladores.TareasControlador;
+import static data.controladores.TareasControlador.listaTareas;
+import data.modelos.Proyecto;
+import data.modelos.Tarea;
+import data.repositorios.TareasRepositorio;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Julio
@@ -149,7 +158,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnAgregarTareaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, 40));
+        getContentPane().add(btnAgregarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Control de Proyectos");
@@ -249,6 +258,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         btnAgregarEncargadoTarea.setText("Agregar Encargado");
         btnAgregarEncargadoTarea.setName("btnAgregarEncargadoTarea"); // NOI18N
+        btnAgregarEncargadoTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarEncargadoTareaActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAgregarEncargadoTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 140, 40));
 
         cbxEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Pendiente", "En desarrollo", "Suspendida", "Cancelada", "Terminada" }));
@@ -364,7 +378,12 @@ public class MainWindow extends javax.swing.JFrame {
         cbxProyectos.setVisible(false);
         
     }
+    public String proyectoId;
     private void btnAgregarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProyectoActionPerformed
+        Proyecto proyecto = new Proyecto();
+        proyecto.setNombre(txtNombreProyecto.getText());
+        proyecto.setDescripción(txtDescripcion.getText());
+        ProyectoControlador.agregarProyecto(proyecto);
         botonAgregarProyecto();
     }//GEN-LAST:event_btnAgregarProyectoActionPerformed
     public void botonAgregarTarea()
@@ -377,8 +396,14 @@ public class MainWindow extends javax.swing.JFrame {
         
     }
     private void btnAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTareaActionPerformed
+        Tarea tarea = new Tarea();
+        //ArrayList<Tarea> listadetareas = TareasControlador.listaTareas();
+        tarea.setNombre(txtNombreTarea.getText());
+        tarea.setProyectoId(proyectoId);
+        TareasControlador.agregarTarea(tarea);
         botonAgregarTarea();
     }//GEN-LAST:event_btnAgregarTareaActionPerformed
+    public String tareaId;
     public void botonGuardarTarea()
     {
         //metodo de guardar
@@ -390,8 +415,34 @@ public class MainWindow extends javax.swing.JFrame {
         btnEliminarTarea.setVisible(true);
         
     }
+    private void actualizarTablaDeTareas(ArrayList<Tarea> listaTareas)
+    {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Tarea");
+        modelo.addColumn("Encargado");
+        modelo.addColumn("Asociados");
+        modelo.addColumn("Comentario");
+        modelo.addColumn("Estado");
+        Object[] fila = new Object [5];
+        
+        for (Tarea tarea : listaTareas)
+        {
+            fila[0]= tarea.getNombre();
+            fila[1]= tarea.getResponsableId();
+            fila[2]= tarea.getCometario();
+            fila[3]= tarea.getNombre();
+            fila[4]= tarea.getEstado();
+            modelo.addRow(fila);
+        }
+        tblPrincipal.setModel(modelo);
+    }
     private void btnGuardarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTareaActionPerformed
         botonGuardarTarea();
+        ArrayList<Tarea> listaTareas= TareasRepositorio.getTareas(); 
+        actualizarTablaDeTareas(listaTareas);
+        
+        /*  public static ArrayList<Tarea> listaTareas(){
+        return tareasRepositorio.getTareas();*/
     }//GEN-LAST:event_btnGuardarTareaActionPerformed
 
     private void cbxEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEstadosActionPerformed
@@ -426,6 +477,10 @@ public class MainWindow extends javax.swing.JFrame {
         lblComentario.setVisible(false);
         txtComentario.setVisible(false);
     }//GEN-LAST:event_btnGuardarComentarioActionPerformed
+
+    private void btnAgregarEncargadoTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEncargadoTareaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarEncargadoTareaActionPerformed
 
     /**
      * @param args the command line arguments
