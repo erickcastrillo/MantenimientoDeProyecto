@@ -15,8 +15,45 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+        ocultarTodo();
+        setLocationRelativeTo(null);
     }
-
+    public void ocultarTodo (){
+        lblNombreProyecto.setVisible(false);
+        txtNombreProyecto.setVisible(false);
+        
+        lblEncargado.setVisible(false);
+        txtEncargado.setVisible(false);
+        
+        lblDescripcion.setVisible(false);
+        txtDescripcion.setVisible(false);
+        
+        lblEstado.setVisible(false);
+        txtEstado.setVisible(false); 
+        
+        lblNombreTarea.setVisible(false);
+        txtNombreTarea.setVisible(false);
+        
+        lblComentario.setVisible(false);
+        txtComentario.setVisible(false);
+        
+        lblListaDeTareas.setVisible(false);
+        lblListaDeAsociados.setVisible(false);
+        
+        btnAgregarTarea.setVisible(false);
+        btnAgregarComentario.setVisible(false);
+        btnCambiarEstado.setVisible(false);
+        btnGuardarProyecto.setVisible(false);
+        btnGuardarTarea.setVisible(false);
+        btnAgregarAsociados.setVisible(false);
+        btnEliminarTarea.setVisible(false);
+        btnEliminarAsociados.setVisible(false);
+        btnAgregarEncargadoTarea.setVisible(false);
+        
+       
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,42 +64,62 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        cbxProyectos = new javax.swing.JComboBox<>();
+        lblNombreProyecto = new javax.swing.JLabel();
+        txtNombreProyecto = new javax.swing.JTextField();
+        lblEncargado = new javax.swing.JLabel();
+        txtEncargado = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        tblPrincipal = new javax.swing.JTable();
+        lblListaDeTareas = new javax.swing.JLabel();
+        btnAgregarTarea = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        lblEstado = new javax.swing.JLabel();
+        txtEstado = new javax.swing.JTextField();
+        btnAgregarProyecto = new javax.swing.JButton();
+        lblDescripcion = new javax.swing.JLabel();
+        txtDescripcion = new javax.swing.JTextField();
+        btnAgregarComentario = new javax.swing.JButton();
+        btnCambiarEstado = new javax.swing.JButton();
+        btnGuardarProyecto = new javax.swing.JButton();
+        btnGuardarTarea = new javax.swing.JButton();
+        txtNombreTarea = new javax.swing.JTextField();
+        lblNombreTarea = new javax.swing.JLabel();
+        btnAgregarAsociados = new javax.swing.JButton();
+        btnEliminarAsociados = new javax.swing.JButton();
+        lblComentario = new javax.swing.JLabel();
+        txtComentario = new javax.swing.JTextField();
+        lblListaDeAsociados = new javax.swing.JLabel();
+        btnEliminarTarea = new javax.swing.JButton();
+        btnAgregarEncargadoTarea = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setName("txtNombreTarea"); // NOI18N
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 50, 120, 40));
+        cbxProyectos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Proyecto 1", "Proyecto2" }));
+        cbxProyectos.setName("cbxProyectos"); // NOI18N
+        getContentPane().add(cbxProyectos, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 50, 180, 40));
 
-        jLabel1.setText("Nombre del proyecto:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 62, 250, 30));
+        lblNombreProyecto.setText("Nombre del proyecto:");
+        lblNombreProyecto.setName("lblNombreProyecto"); // NOI18N
+        getContentPane().add(lblNombreProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        jLabel2.setText("Encargado:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, -1, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 190, 30));
+        txtNombreProyecto.setName("txtNombreProyecto"); // NOI18N
+        getContentPane().add(txtNombreProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 62, 270, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        lblEncargado.setText("Encargado:");
+        lblEncargado.setName("lblEncargado"); // NOI18N
+        getContentPane().add(lblEncargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, -1, -1));
+
+        txtEncargado.setName("txtEncargado"); // NOI18N
+        getContentPane().add(txtEncargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 210, 30));
+
+        tblPrincipal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -73,44 +130,205 @@ public class MainWindow extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblPrincipal.setName("tblPrincipal"); // NOI18N
+        jScrollPane1.setViewportView(tblPrincipal);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 1120, 360));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 1120, 360));
 
-        jLabel3.setText("Tareas");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, -1, -1));
+        lblListaDeTareas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblListaDeTareas.setText("Tareas");
+        lblListaDeTareas.setName("lblListaDeTareas"); // NOI18N
+        getContentPane().add(lblListaDeTareas, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, -1, -1));
 
-        jButton1.setText("Agregar Tarea");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, 40));
+        btnAgregarTarea.setText("Agregar Tarea");
+        btnAgregarTarea.setName("btnAgregarTarea"); // NOI18N
+        btnAgregarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarTareaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAgregarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, -1, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel4.setText("Manejo de Proyectos");
+        jLabel4.setText("Control de Proyectos");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Seleccione el Proyecto");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 20, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
 
-        jLabel6.setText("Estado:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, -1, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 130, 30));
+        lblEstado.setText("Estado:");
+        lblEstado.setName("lblEstado"); // NOI18N
+        getContentPane().add(lblEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, -1, -1));
 
-        jButton2.setText("Agregar Proyecto");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 40));
+        txtEstado.setName("txtEstado"); // NOI18N
+        getContentPane().add(txtEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 60, 130, 30));
 
-        jLabel7.setText("Descripción:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 1000, 30));
+        btnAgregarProyecto.setText("Agregar Proyecto");
+        btnAgregarProyecto.setName("btnAgregarProyecto"); // NOI18N
+        btnAgregarProyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarProyectoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAgregarProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 40));
 
-        jButton3.setText("Comentario");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, 40));
+        lblDescripcion.setText("Descripción:");
+        lblDescripcion.setName("lblDescripcion"); // NOI18N
+        getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
-        jButton4.setText("Cambiar Estado");
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 120, 40));
+        txtDescripcion.setName("txtDescripcion"); // NOI18N
+        getContentPane().add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 1000, 30));
+
+        btnAgregarComentario.setText("Agregar Comentario");
+        btnAgregarComentario.setName("btnAgregarComentario"); // NOI18N
+        getContentPane().add(btnAgregarComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, -1, 40));
+
+        btnCambiarEstado.setText("Cambiar Estado");
+        btnCambiarEstado.setName("btnCambiarEstado"); // NOI18N
+        getContentPane().add(btnCambiarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 120, 40));
+
+        btnGuardarProyecto.setText("Guardar Proyecto");
+        btnGuardarProyecto.setName("btnGuardarProyecto"); // NOI18N
+        btnGuardarProyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarProyectoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnGuardarProyecto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 140, 30));
+
+        btnGuardarTarea.setText("Guardar Tarea");
+        btnGuardarTarea.setName("btnGuardarTarea"); // NOI18N
+        btnGuardarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarTareaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnGuardarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
+        getContentPane().add(txtNombreTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 170, 340, -1));
+
+        lblNombreTarea.setText("Nombre tarea:");
+        lblNombreTarea.setName("lblNombreTarea"); // NOI18N
+        getContentPane().add(lblNombreTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
+
+        btnAgregarAsociados.setText("Agregar Asociados");
+        btnAgregarAsociados.setName("btnAgregarAsociados"); // NOI18N
+        getContentPane().add(btnAgregarAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, -1, 20));
+
+        btnEliminarAsociados.setText("Eliminar Asociados");
+        btnEliminarAsociados.setName("btnEliminarAsociados"); // NOI18N
+        getContentPane().add(btnEliminarAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, -1));
+
+        lblComentario.setText("Comentario:");
+        lblComentario.setName("lblComentario"); // NOI18N
+        getContentPane().add(lblComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, -1, -1));
+
+        txtComentario.setName("txtComentario"); // NOI18N
+        getContentPane().add(txtComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, 340, -1));
+
+        lblListaDeAsociados.setText("Lista de asociados");
+        lblListaDeAsociados.setName("lblListaDeAsociados"); // NOI18N
+        getContentPane().add(lblListaDeAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, -1, -1));
+
+        btnEliminarTarea.setText("Eliminar Tarea");
+        btnEliminarTarea.setName("btnEliminarTarea"); // NOI18N
+        getContentPane().add(btnEliminarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
+
+        btnAgregarEncargadoTarea.setText("Agregar Encargado de tarea");
+        btnAgregarEncargadoTarea.setName("btnAgregarEncargadoTarea"); // NOI18N
+        getContentPane().add(btnAgregarEncargadoTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void botonGuardarProyecto()
+    {
+        txtNombreProyecto.setEnabled(false);
+        txtEncargado.setEnabled(false);
+        txtDescripcion.setEnabled(false);
+        btnGuardarProyecto.setVisible(false);
+        btnAgregarProyecto.setVisible(true);
+        btnAgregarTarea.setVisible(true);
+        btnAgregarAsociados.setVisible(true);
+        btnAgregarAsociados.setVisible(true);
+       
+        
+        
+    }
+    private void btnGuardarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarProyectoActionPerformed
+        botonGuardarProyecto();
+    }//GEN-LAST:event_btnGuardarProyectoActionPerformed
+    public void botonAgregarProyecto()
+    {
+        lblNombreProyecto.setVisible(true);
+        txtNombreProyecto.setVisible(true);
+        txtNombreProyecto.setEnabled(true);
+        txtNombreProyecto.setText("");
+        
+        
+        lblEncargado.setVisible(true);
+        txtEncargado.setVisible(true);
+        txtEncargado.setEnabled(true);
+        txtEncargado.setText("");
+        
+        lblDescripcion.setVisible(true);
+        txtDescripcion.setVisible(true);
+        txtDescripcion.setEnabled(true);
+        txtDescripcion.setText("");
+        
+        btnAgregarProyecto.setVisible(false);
+        btnGuardarProyecto.setVisible(true);
+        
+        lblEstado.setVisible(false);
+        txtEstado.setVisible(false); 
+        
+        lblNombreTarea.setVisible(false);
+        txtNombreTarea.setVisible(false);
+        
+        lblComentario.setVisible(false);
+        txtComentario.setVisible(false);
+        
+        lblListaDeTareas.setVisible(false);
+        lblListaDeAsociados.setVisible(false);
+        
+        btnAgregarTarea.setVisible(false);
+        btnAgregarComentario.setVisible(false);
+        btnCambiarEstado.setVisible(false);
+        btnGuardarTarea.setVisible(false);
+        btnAgregarAsociados.setVisible(false);
+        btnEliminarTarea.setVisible(false);
+        btnEliminarAsociados.setVisible(false);
+        
+    }
+    private void btnAgregarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProyectoActionPerformed
+        botonAgregarProyecto();
+    }//GEN-LAST:event_btnAgregarProyectoActionPerformed
+    public void botonAgregarTarea()
+    {
+        btnAgregarTarea.setVisible(false);
+        btnAgregarProyecto.setVisible(false);
+        lblNombreTarea.setVisible(true);
+        txtNombreTarea.setVisible(true);
+        btnAgregarAsociados.setVisible(false);
+        btnGuardarTarea.setVisible(true);
+        
+    }
+    private void btnAgregarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTareaActionPerformed
+        botonAgregarTarea();
+    }//GEN-LAST:event_btnAgregarTareaActionPerformed
+    public void botonGuardarTarea()
+    {
+        txtNombreTarea.setText("");
+        txtNombreTarea.setVisible(false);
+        lblNombreTarea.setVisible(false);
+        btnAgregarTarea.setVisible(true);
+        btnAgregarProyecto.setVisible(true);
+        btnGuardarTarea.setVisible(false);
+        btnAgregarAsociados.setVisible(true);
+    }
+    private void btnGuardarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarTareaActionPerformed
+        botonGuardarTarea();
+    }//GEN-LAST:event_btnGuardarTareaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,25 +366,36 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton btnAgregarAsociados;
+    private javax.swing.JButton btnAgregarComentario;
+    private javax.swing.JButton btnAgregarEncargadoTarea;
+    private javax.swing.JButton btnAgregarProyecto;
+    private javax.swing.JButton btnAgregarTarea;
+    private javax.swing.JButton btnCambiarEstado;
+    private javax.swing.JButton btnEliminarAsociados;
+    private javax.swing.JButton btnEliminarTarea;
+    private javax.swing.JButton btnGuardarProyecto;
+    private javax.swing.JButton btnGuardarTarea;
+    private javax.swing.JComboBox<String> cbxProyectos;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel lblComentario;
+    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblEncargado;
+    private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblListaDeAsociados;
+    private javax.swing.JLabel lblListaDeTareas;
+    private javax.swing.JLabel lblNombreProyecto;
+    private javax.swing.JLabel lblNombreTarea;
+    public javax.swing.JTable tblPrincipal;
+    private javax.swing.JTextField txtComentario;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtEncargado;
+    private javax.swing.JTextField txtEstado;
+    private javax.swing.JTextField txtNombreProyecto;
+    private javax.swing.JTextField txtNombreTarea;
     // End of variables declaration//GEN-END:variables
 }
