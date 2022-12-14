@@ -197,6 +197,10 @@ public class LoginWindow extends JFrame implements Custumizable {
                 JOptionPane.INFORMATION_MESSAGE);
 
         // TODO: Abrir la ventana principal
+        SwingUtilities.invokeLater(() -> {
+            new MainWindow();
+            dispose();
+        });
     }
 
 
