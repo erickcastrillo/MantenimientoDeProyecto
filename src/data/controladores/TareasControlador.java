@@ -18,6 +18,7 @@
 package data.controladores;
 
 import data.modelos.Estado;
+import data.modelos.Hallazgo;
 import data.modelos.Tarea;
 import data.repositorios.TareasRepositorio;
 
@@ -51,8 +52,6 @@ public class TareasControlador {
     public static ArrayList<Tarea> obtenerTareasPorEstado(Estado estado){
         return tareasRepositorio.getTareasEstado(estado);
     }
-    public static ArrayList<Tarea> listaHallazgoTarea (Tarea tarea){
-        return tareasRepositorio.listaHallazgoTarea(tarea);}
     // Obtener tareas por responsable
     public static ArrayList<Tarea> obtenerTareasPorResponsable(String responsableId){
         return tareasRepositorio.getTareasUsuario(responsableId);
@@ -72,6 +71,10 @@ public class TareasControlador {
     // Devolver las tareas de un proyecto de un usuario por estado
     public static ArrayList<Tarea> obtenerTareasPorProyectoYResponsableYEstado(String proyectoId, String responsableId, Estado estado){
         return tareasRepositorio.getTareasProyectoUsuarioEstado(proyectoId, responsableId, estado);
+    }
+    // Devolver todos los hallazgos de la tarea
+    public static ArrayList<Hallazgo> obtenerHallazgosDeTarea(String tareaId){
+        return HallazgosControlador.getHallazgosAsociados(tareaId);
     }
     // Cargar las tareas desde el disco
     public static void cargarDatos(){
