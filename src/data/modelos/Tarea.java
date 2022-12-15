@@ -42,6 +42,10 @@ public class Tarea implements Serializable {
         this.asociados = asociados;
     }
 
+    private void agregarAsociado(Usuario usuario) {
+        this.asociados.add(usuario);
+    }
+
     private ArrayList<Usuario> asociados;
 
     public Tarea(String nombre, String descripción, String hallazgo, String responsableId, String proyectoId, Estado estado, String cometario, ArrayList<Usuario> asociados) {
