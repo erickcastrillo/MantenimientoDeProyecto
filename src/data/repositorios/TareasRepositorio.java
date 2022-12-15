@@ -31,27 +31,7 @@ public class TareasRepositorio {
     public ArrayList<Tarea> getTareas() {
         return tareas;
     }
-    public ArrayList<Tarea> getHallazgos() {
-        return tareas;
-    }
-    public void agregarHallazgos(Tarea tarea) {
-        tareas.add(tarea);
-    }
-    
-    public void eliminarHallazgos(String id) {
-        tareas.remove(getHallazgos());
-    }
-    
 
-    public ArrayList<Tarea> listaHallazgoTarea(Tarea tarea) {
-        ArrayList<Tarea> listaHallazgoTarea = new ArrayList<>();
-        for (Tarea tarea : listaHallazgo) {
-            if (tarea.getHallazgo().equals(tarea)) {
-                listaHallazgoTarea.add(tarea);
-            }
-        }
-        return listaHallazgoTarea;
-    }
     // Devolver una tarea por su id
     public Tarea getTarea(String id) {
         for (Tarea tarea : tareas) {
