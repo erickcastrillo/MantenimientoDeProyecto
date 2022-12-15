@@ -9,6 +9,7 @@ import data.controladores.TareasControlador;
 import static data.controladores.TareasControlador.listaTareas;
 import data.controladores.UsuarioControlador;
 import static data.controladores.UsuarioControlador.listaUsuarios;
+import data.modelos.Estado;
 import data.modelos.Proyecto;
 import data.modelos.Tarea;
 import data.modelos.Usuario;
@@ -21,7 +22,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Julio
  */
 public class MainWindow extends javax.swing.JFrame {
-
+    public static String IDTareaSeleccionada;
+    public static String IDEncargadoSeleccionado;
+    public static String IDAsociadoSeleccionado;
+    public static String IDUsuarioLogeado;
+    
     /**
      * Creates new form MainWindow
      */
@@ -31,6 +36,7 @@ public class MainWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     public void ocultarTodo (){
+        btnSeleccionarEncargado.setVisible(false);
         lblHallazgo.setVisible(false);
         txtHallazgo.setVisible(false);
         btnGuardarComentario.setVisible(false);
@@ -111,6 +117,8 @@ public class MainWindow extends javax.swing.JFrame {
         btnGuardarComentario = new javax.swing.JButton();
         lblHallazgo = new javax.swing.JLabel();
         txtHallazgo = new javax.swing.JTextField();
+        btnSeleccionarEncargado = new javax.swing.JButton();
+        btnSeleccionarAsociado = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         jMenu1.setText("jMenu1");
@@ -149,9 +157,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         ));
         tblPrincipal.setName("tblPrincipal"); // NOI18N
+        tblPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPrincipalMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPrincipal);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 1120, 360));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 1120, 360));
 
         lblListaDeTareas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblListaDeTareas.setText("Tareas");
@@ -165,7 +178,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnAgregarTareaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, 40));
+        getContentPane().add(btnAgregarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, -1, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Control de Proyectos");
@@ -206,7 +219,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnAgregarComentarioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 140, 30));
+        getContentPane().add(btnAgregarComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 290, 140, 30));
 
         btnCambiarEstado.setText("Cambiar Estado");
         btnCambiarEstado.setName("btnCambiarEstado"); // NOI18N
@@ -215,7 +228,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnCambiarEstadoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCambiarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 120, 40));
+        getContentPane().add(btnCambiarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 120, 40));
 
         btnGuardarProyecto.setText("Guardar ");
         btnGuardarProyecto.setName("btnGuardarProyecto"); // NOI18N
@@ -242,6 +255,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         btnAgregarAsociados.setText("Agregar Asociados");
         btnAgregarAsociados.setName("btnAgregarAsociados"); // NOI18N
+        btnAgregarAsociados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarAsociadosActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAgregarAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 140, 30));
 
         btnEliminarAsociados.setText("Eliminar Asociados");
@@ -266,7 +284,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         btnEliminarTarea.setText("Eliminar Tarea");
         btnEliminarTarea.setName("btnEliminarTarea"); // NOI18N
-        getContentPane().add(btnEliminarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, 30));
+        btnEliminarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarTareaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEliminarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, 30));
 
         btnAgregarEncargadoTarea.setText("Agregar Encargado");
         btnAgregarEncargadoTarea.setName("btnAgregarEncargadoTarea"); // NOI18N
@@ -275,7 +298,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnAgregarEncargadoTareaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarEncargadoTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 140, 40));
+        getContentPane().add(btnAgregarEncargadoTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 140, 40));
 
         cbxEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Pendiente", "En desarrollo", "Suspendida", "Cancelada", "Terminada" }));
         cbxEstados.setName("cbxEstados"); // NOI18N
@@ -302,7 +325,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnGuardarComentarioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardarComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, -1, 30));
+        getContentPane().add(btnGuardarComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, 30));
 
         lblHallazgo.setText("Hallazgo:");
         lblHallazgo.setName("lblHallazgo"); // NOI18N
@@ -315,6 +338,24 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtHallazgo, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 250, 300, -1));
+
+        btnSeleccionarEncargado.setText("Seleccionar Encargado");
+        btnSeleccionarEncargado.setName("btnSeleccionarEncargado"); // NOI18N
+        btnSeleccionarEncargado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarEncargadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSeleccionarEncargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 150, 40));
+
+        btnSeleccionarAsociado.setText("Seleccionar Asociado");
+        btnSeleccionarAsociado.setName("btnSeleccionarAsociado"); // NOI18N
+        btnSeleccionarAsociado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarAsociadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSeleccionarAsociado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -446,18 +487,20 @@ public class MainWindow extends javax.swing.JFrame {
     private void actualizarTablaParaSeleccionarElEncargado(ArrayList<Usuario> listaUsuarios)
     {
         DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
         modelo.addColumn("Telefono");
         modelo.addColumn("Correo");
-        Object[] fila = new Object [4];
+        Object[] fila = new Object [5];
         
         for (Usuario usuario : listaUsuarios())
         {
-            fila[0]= usuario.getNombre();
-            fila[1]= usuario.getPrimerApellido();
-            fila[2]= usuario.getTeléfono(); 
-            fila[3]= usuario.getCorreoElectrónico();
+            fila[0]= usuario.getId();
+            fila[1]= usuario.getNombre();
+            fila[2]= usuario.getPrimerApellido();
+            fila[3]= usuario.getTeléfono(); 
+            fila[4]= usuario.getCorreoElectrónico();
             modelo.addRow(fila);
         }
         tblPrincipal.setModel(modelo);
@@ -465,20 +508,33 @@ public class MainWindow extends javax.swing.JFrame {
     private void actualizarTablaDeTareas(ArrayList<Tarea> listaTareas)
     {
         DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID");
         modelo.addColumn("Tarea");
         modelo.addColumn("Descripción");
         modelo.addColumn("Encargado");
         modelo.addColumn("Hallazgo");
         modelo.addColumn("Estado");
-        Object[] fila = new Object [5];
+        Object[] fila = new Object [6];
         
         for (Tarea tarea : listaTareas)
         {
-            fila[0]= tarea.getNombre();
-            fila[1]= tarea.getDescripción();
-            fila[2]= tarea.getEstado(); // se debe crear el getEncargadoTarea
-            fila[3]= tarea.getHallazgo();
-            fila[4]= tarea.getEstado();
+            Usuario usuario = UsuarioControlador.getUsuario(tarea.getResponsableId());
+            String NombreCompleto = "";
+            if (usuario!=null)
+            {
+               NombreCompleto = usuario.getNombre() + " " + usuario.getPrimerApellido(); 
+            }
+            String EstadoTarea="";
+            if (EstadoTarea!=null)
+            {
+                EstadoTarea = tarea.getEstado().toString().replace("_", " ").toLowerCase();
+            }
+            fila[0]= tarea.getId();
+            fila[1]= tarea.getNombre();
+            fila[2]= tarea.getDescripción();
+            fila[3]= NombreCompleto;
+            fila[4]= tarea.getHallazgo();
+            fila[5]= EstadoTarea;
             modelo.addRow(fila);
         }
         tblPrincipal.setModel(modelo);
@@ -506,12 +562,33 @@ public class MainWindow extends javax.swing.JFrame {
         cbxEstados.setVisible(true);
         btnCambiarEstado.setVisible(false);
         btnGuardarEstado.setVisible(true);
+        int selectedRow = tblPrincipal.getSelectedRow();
+        IDTareaSeleccionada = tblPrincipal.getValueAt(selectedRow, 0).toString();
     }//GEN-LAST:event_btnCambiarEstadoActionPerformed
 
     private void btnGuardarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEstadoActionPerformed
         cbxEstados.setVisible(false);
         btnCambiarEstado.setVisible(true);
-        btnGuardarEstado.setVisible(false);
+        btnGuardarEstado.setVisible(false);       
+       Tarea tarea = TareasControlador.obtenerTarea(IDTareaSeleccionada);
+       if (cbxEstados.getSelectedItem()=="Pendiente")
+       {
+           tarea.setEstado(Estado.PENDIENTE);
+       }else if(cbxEstados.getSelectedItem()=="En desarrollo")
+       {
+           tarea.setEstado(Estado.EN_DESARROLLO);
+       }else if(cbxEstados.getSelectedItem()=="Suspendida")
+       {
+           tarea.setEstado(Estado.SUSPENDIDA);
+       }else if(cbxEstados.getSelectedItem()=="Cancelada")
+       {
+           tarea.setEstado(Estado.CANCELADA);
+       }else if(cbxEstados.getSelectedItem()=="Terminada")
+       {
+           tarea.setEstado(Estado.TERMINADA);
+       }
+       ArrayList<Tarea> listaTareas= TareasControlador.listaTareas(); 
+        actualizarTablaDeTareas(listaTareas);
     }//GEN-LAST:event_btnGuardarEstadoActionPerformed
 
     private void btnAgregarComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarComentarioActionPerformed
@@ -530,8 +607,12 @@ public class MainWindow extends javax.swing.JFrame {
         txtHallazgo.setVisible(false);
         
     }//GEN-LAST:event_btnGuardarComentarioActionPerformed
-
+    
     private void btnAgregarEncargadoTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEncargadoTareaActionPerformed
+        btnSeleccionarEncargado.setVisible(true);
+        btnAgregarEncargadoTarea.setVisible(false);
+        int selectedRow = tblPrincipal.getSelectedRow();
+        IDTareaSeleccionada = tblPrincipal.getValueAt(selectedRow, 0).toString();
         ArrayList<Usuario> listaUsuarios= UsuarioControlador.listaUsuarios();
         actualizarTablaParaSeleccionarElEncargado(listaUsuarios);
         
@@ -547,6 +628,47 @@ public class MainWindow extends javax.swing.JFrame {
     private void txtHallazgoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHallazgoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHallazgoActionPerformed
+
+    private void tblPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPrincipalMouseClicked
+        
+    }//GEN-LAST:event_tblPrincipalMouseClicked
+
+    private void btnSeleccionarEncargadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarEncargadoActionPerformed
+       btnAgregarEncargadoTarea.setVisible(true);
+       btnSeleccionarEncargado.setVisible(false);
+        int selectedRow = tblPrincipal.getSelectedRow();
+       IDEncargadoSeleccionado = tblPrincipal.getValueAt(selectedRow, 0).toString();
+       Tarea tarea = TareasControlador.obtenerTarea(IDTareaSeleccionada);
+       tarea.setResponsableId(IDEncargadoSeleccionado);
+       ArrayList<Tarea> listaTareas= TareasControlador.listaTareas(); 
+        actualizarTablaDeTareas(listaTareas);
+    }//GEN-LAST:event_btnSeleccionarEncargadoActionPerformed
+
+    private void btnEliminarTareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTareaActionPerformed
+        int selectedRow = tblPrincipal.getSelectedRow();
+        IDTareaSeleccionada = tblPrincipal.getValueAt(selectedRow, 0).toString();
+        TareasControlador.eliminarTarea(IDTareaSeleccionada);
+    }//GEN-LAST:event_btnEliminarTareaActionPerformed
+
+    private void btnAgregarAsociadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAsociadosActionPerformed
+        btnAgregarAsociados.setVisible(false);
+        btnSeleccionarAsociado.setVisible(true);
+        int selectedRow = tblPrincipal.getSelectedRow();
+        IDTareaSeleccionada = tblPrincipal.getValueAt(selectedRow, 0).toString();
+        ArrayList<Usuario> listaUsuarios= UsuarioControlador.listaUsuarios();
+        actualizarTablaParaSeleccionarElEncargado(listaUsuarios);
+    }//GEN-LAST:event_btnAgregarAsociadosActionPerformed
+
+    private void btnSeleccionarAsociadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarAsociadoActionPerformed
+        btnAgregarAsociados.setVisible(true);
+       btnSeleccionarAsociado.setVisible(false);
+        int selectedRow = tblPrincipal.getSelectedRow();
+       IDAsociadoSeleccionado = tblPrincipal.getValueAt(selectedRow, 0).toString();
+       Tarea tarea = TareasControlador.obtenerTarea(IDTareaSeleccionada);
+       tarea.set(IDAsociadoSeleccionado);
+       ArrayList<Tarea> listaTareas= TareasControlador.listaTareas(); 
+        actualizarTablaDeTareas(listaTareas);
+    }//GEN-LAST:event_btnSeleccionarAsociadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -596,6 +718,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarEstado;
     private javax.swing.JButton btnGuardarProyecto;
     private javax.swing.JButton btnGuardarTarea;
+    private javax.swing.JButton btnSeleccionarAsociado;
+    private javax.swing.JButton btnSeleccionarEncargado;
     private javax.swing.JComboBox<String> cbxEstados;
     private javax.swing.JComboBox<String> cbxProyectos;
     private javax.swing.JLabel jLabel4;

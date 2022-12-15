@@ -108,7 +108,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="340" width="1120" height="360"/>
+          <AbsoluteConstraints x="20" y="330" width="1120" height="360"/>
         </Constraint>
       </Constraints>
 
@@ -126,6 +126,9 @@
             </Property>
             <Property name="name" type="java.lang.String" value="tblPrincipal" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblPrincipalMouseClicked"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
@@ -156,7 +159,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="170" y="180" width="-1" height="40"/>
+          <AbsoluteConstraints x="140" y="180" width="-1" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -253,7 +256,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="340" y="270" width="140" height="30"/>
+          <AbsoluteConstraints x="330" y="290" width="140" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -267,7 +270,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="430" y="180" width="120" height="40"/>
+          <AbsoluteConstraints x="430" y="140" width="120" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -322,6 +325,9 @@
         <Property name="text" type="java.lang.String" value="Agregar Asociados"/>
         <Property name="name" type="java.lang.String" value="btnAgregarAsociados" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarAsociadosActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="280" y="230" width="140" height="30"/>
@@ -379,9 +385,12 @@
         <Property name="text" type="java.lang.String" value="Eliminar Tarea"/>
         <Property name="name" type="java.lang.String" value="btnEliminarTarea" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarTareaActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="230" width="-1" height="30"/>
+          <AbsoluteConstraints x="140" y="230" width="-1" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -395,7 +404,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="280" y="180" width="140" height="40"/>
+          <AbsoluteConstraints x="280" y="160" width="140" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -449,7 +458,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="270" y="270" width="-1" height="30"/>
+          <AbsoluteConstraints x="260" y="290" width="-1" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -474,6 +483,34 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="820" y="250" width="300" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSeleccionarEncargado">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Seleccionar Encargado"/>
+        <Property name="name" type="java.lang.String" value="btnSeleccionarEncargado" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSeleccionarEncargadoActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="270" y="180" width="150" height="40"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSeleccionarAsociado">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Seleccionar Asociado"/>
+        <Property name="name" type="java.lang.String" value="btnSeleccionarAsociado" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSeleccionarAsociadoActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="280" y="260" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

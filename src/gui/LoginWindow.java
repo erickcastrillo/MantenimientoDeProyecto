@@ -198,7 +198,9 @@ public class LoginWindow extends JFrame implements Custumizable {
 
         // TODO: Abrir la ventana principal
         SwingUtilities.invokeLater(() -> {
-            new MainWindow();
+            MainWindow ventana = new MainWindow();
+            ventana.IDUsuarioLogeado = usuario.getId();
+            ventana.setVisible(true);
             dispose();
         });
     }
