@@ -18,6 +18,7 @@
 package data.modelos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -33,12 +34,23 @@ public class Tarea implements Serializable {
     private String proyectoId;
     private Estado estado;
 
-    public Tarea(String nombre, String descripción,String hallazgo, String responsableId, String proyectoId, Estado estado, String cometario) {
+    public ArrayList<Usuario> getAsociados() {
+        return asociados;
+    }
+
+    public void setAsociados(ArrayList<Usuario> asociados) {
+        this.asociados = asociados;
+    }
+
+    private ArrayList<Usuario> asociados;
+
+    public Tarea(String nombre, String descripción, String hallazgo, String responsableId, String proyectoId, Estado estado, String cometario, ArrayList<Usuario> asociados) {
         this.nombre = nombre;
         this.descripción = descripción;
         this.responsableId = responsableId;
         this.proyectoId = proyectoId;
         this.estado = estado;
+        this.asociados = asociados;
     }
 
     public Tarea() { }
