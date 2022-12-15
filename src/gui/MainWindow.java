@@ -37,6 +37,7 @@ public class MainWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     public void ocultarTodo (){
+        btnEliminarAsociadoSeleccionado.setVisible(false);
         btnSeleccionarEncargado.setVisible(false);
         lblHallazgo.setVisible(false);
         txtHallazgo.setVisible(false);
@@ -120,6 +121,7 @@ public class MainWindow extends javax.swing.JFrame {
         txtHallazgo = new javax.swing.JTextField();
         btnSeleccionarEncargado = new javax.swing.JButton();
         btnSeleccionarAsociado = new javax.swing.JButton();
+        btnEliminarAsociadoSeleccionado = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         jMenu1.setText("jMenu1");
@@ -179,7 +181,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnAgregarTareaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, -1, 40));
+        getContentPane().add(btnAgregarTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setText("Control de Proyectos");
@@ -261,10 +263,15 @@ public class MainWindow extends javax.swing.JFrame {
                 btnAgregarAsociadosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 140, 30));
+        getContentPane().add(btnAgregarAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 140, 30));
 
         btnEliminarAsociados.setText("Eliminar Asociados");
         btnEliminarAsociados.setName("btnEliminarAsociados"); // NOI18N
+        btnEliminarAsociados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarAsociadosActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEliminarAsociados, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 130, 30));
 
         lblDescripcionTarea.setText("Descripcion Tarea:");
@@ -299,7 +306,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnAgregarEncargadoTareaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarEncargadoTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 160, 140, 40));
+        getContentPane().add(btnAgregarEncargadoTarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 140, 40));
 
         cbxEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Pendiente", "En desarrollo", "Suspendida", "Cancelada", "Terminada" }));
         cbxEstados.setName("cbxEstados"); // NOI18N
@@ -317,7 +324,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnGuardarEstadoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 120, 40));
+        getContentPane().add(btnGuardarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 120, 40));
 
         btnGuardarComentario.setText("Guardar Hallazgo");
         btnGuardarComentario.setName("btnGuardarComentario"); // NOI18N
@@ -326,7 +333,7 @@ public class MainWindow extends javax.swing.JFrame {
                 btnGuardarComentarioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardarComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, -1, 30));
+        getContentPane().add(btnGuardarComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, -1, 30));
 
         lblHallazgo.setText("Hallazgo:");
         lblHallazgo.setName("lblHallazgo"); // NOI18N
@@ -357,6 +364,15 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSeleccionarAsociado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
+
+        btnEliminarAsociadoSeleccionado.setText("Eliminar Seleccionado");
+        btnEliminarAsociadoSeleccionado.setName("btnEliminarAsociadoSeleccionado"); // NOI18N
+        btnEliminarAsociadoSeleccionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarAsociadoSeleccionadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEliminarAsociadoSeleccionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 260, -1, -1));
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -572,6 +588,7 @@ public class MainWindow extends javax.swing.JFrame {
         btnGuardarEstado.setVisible(true);
         int selectedRow = tblPrincipal.getSelectedRow();
         IDTareaSeleccionada = tblPrincipal.getValueAt(selectedRow, 0).toString();
+        
     }//GEN-LAST:event_btnCambiarEstadoActionPerformed
 
     private void btnGuardarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEstadoActionPerformed
@@ -656,6 +673,8 @@ public class MainWindow extends javax.swing.JFrame {
         int selectedRow = tblPrincipal.getSelectedRow();
         IDTareaSeleccionada = tblPrincipal.getValueAt(selectedRow, 0).toString();
         TareasControlador.eliminarTarea(IDTareaSeleccionada);
+         ArrayList<Tarea> listaTareas= TareasControlador.listaTareas(); 
+        actualizarTablaDeTareas(listaTareas);
     }//GEN-LAST:event_btnEliminarTareaActionPerformed
 
     private void btnAgregarAsociadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAsociadosActionPerformed
@@ -677,6 +696,26 @@ public class MainWindow extends javax.swing.JFrame {
         ArrayList<Tarea> listaTareas= TareasControlador.listaTareas(); 
         actualizarTablaDeTareas(listaTareas);
     }//GEN-LAST:event_btnSeleccionarAsociadoActionPerformed
+
+    private void btnEliminarAsociadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAsociadosActionPerformed
+        btnEliminarAsociadoSeleccionado.setVisible(true);
+        btnEliminarAsociados.setVisible(false);
+        int selectedRow = tblPrincipal.getSelectedRow();
+        IDTareaSeleccionada = tblPrincipal.getValueAt(selectedRow, 0).toString();
+        Tarea tarea = TareasControlador.obtenerTarea(IDTareaSeleccionada);
+        actualizarTablaParaSeleccionarElEncargado(tarea.getAsociados());
+    }//GEN-LAST:event_btnEliminarAsociadosActionPerformed
+
+    private void btnEliminarAsociadoSeleccionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarAsociadoSeleccionadoActionPerformed
+        btnEliminarAsociadoSeleccionado.setVisible(false);
+        btnEliminarAsociados.setVisible(true);
+        int selectedRow = tblPrincipal.getSelectedRow();
+        IDAsociadoSeleccionado = tblPrincipal.getValueAt(selectedRow, 0).toString();
+        Tarea tarea = TareasControlador.obtenerTarea(IDTareaSeleccionada);
+        tarea.getAsociados().remove(UsuarioControlador.getUsuario(IDAsociadoSeleccionado));
+        ArrayList<Tarea> listaTareas= TareasControlador.listaTareas(); 
+        actualizarTablaDeTareas(listaTareas);
+    }//GEN-LAST:event_btnEliminarAsociadoSeleccionadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -720,6 +759,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarProyecto;
     private javax.swing.JButton btnAgregarTarea;
     private javax.swing.JButton btnCambiarEstado;
+    private javax.swing.JButton btnEliminarAsociadoSeleccionado;
     private javax.swing.JButton btnEliminarAsociados;
     private javax.swing.JButton btnEliminarTarea;
     private javax.swing.JButton btnGuardarComentario;
