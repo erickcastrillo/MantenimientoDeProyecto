@@ -526,7 +526,7 @@ public class MainWindow extends javax.swing.JFrame {
                NombreCompleto = usuario.getNombre() + " " + usuario.getPrimerApellido(); 
             }
             String EstadoTarea="";
-            if (EstadoTarea!=null)
+            if (tarea.getEstado()!=null)
             {
                 EstadoTarea = tarea.getEstado().toString().replace("_", " ").toLowerCase();
             }
@@ -666,7 +666,7 @@ public class MainWindow extends javax.swing.JFrame {
         int selectedRow = tblPrincipal.getSelectedRow();
        IDAsociadoSeleccionado = tblPrincipal.getValueAt(selectedRow, 0).toString();
        Tarea tarea = TareasControlador.obtenerTarea(IDTareaSeleccionada);
-       tarea.set(IDAsociadoSeleccionado);
+       tarea.(IDAsociadoSeleccionado);
        ArrayList<Tarea> listaTareas= TareasControlador.listaTareas(); 
         actualizarTablaDeTareas(listaTareas);
     }//GEN-LAST:event_btnSeleccionarAsociadoActionPerformed
