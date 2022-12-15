@@ -513,9 +513,10 @@ public class MainWindow extends javax.swing.JFrame {
         modelo.addColumn("Tarea");
         modelo.addColumn("Descripción");
         modelo.addColumn("Encargado");
-        modelo.addColumn("Hallazgo");
+        modelo.addColumn("Hallazgos");
         modelo.addColumn("Estado");
-        Object[] fila = new Object [6];
+        modelo.addColumn("Asociados");
+        Object[] fila = new Object [7];
         
         for (Tarea tarea : listaTareas)
         {
@@ -530,12 +531,18 @@ public class MainWindow extends javax.swing.JFrame {
             {
                 EstadoTarea = tarea.getEstado().toString().replace("_", " ").toLowerCase();
             }
+            int asociados=0;
+            if (tarea.getAsociados()!=null)
+            {
+                asociados=tarea.getAsociados().size();
+            }
             fila[0]= tarea.getId();
             fila[1]= tarea.getNombre();
             fila[2]= tarea.getDescripción();
             fila[3]= NombreCompleto;
             fila[4]= TareasControlador.obtenerHallazgosDeTarea(tarea.getId()).size();
             fila[5]= EstadoTarea;
+            fila[6]= asociados;
             modelo.addRow(fila);
         }
         tblPrincipal.setModel(modelo);
@@ -662,12 +669,12 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void btnSeleccionarAsociadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarAsociadoActionPerformed
         btnAgregarAsociados.setVisible(true);
-       btnSeleccionarAsociado.setVisible(false);
+        btnSeleccionarAsociado.setVisible(false);
         int selectedRow = tblPrincipal.getSelectedRow();
-       IDAsociadoSeleccionado = tblPrincipal.getValueAt(selectedRow, 0).toString();
-       Tarea tarea = TareasControlador.obtenerTarea(IDTareaSeleccionada);
-       tarea.(IDAsociadoSeleccionado);
-       ArrayList<Tarea> listaTareas= TareasControlador.listaTareas(); 
+        IDAsociadoSeleccionado = tblPrincipal.getValueAt(selectedRow, 0).toString();
+        Tarea tarea = TareasControlador.obtenerTarea(IDTareaSeleccionada);
+        tarea.agregarAsociado(UsuarioControlador.getUsuario(IDAsociadoSeleccionado));
+        ArrayList<Tarea> listaTareas= TareasControlador.listaTareas(); 
         actualizarTablaDeTareas(listaTareas);
     }//GEN-LAST:event_btnSeleccionarAsociadoActionPerformed
 

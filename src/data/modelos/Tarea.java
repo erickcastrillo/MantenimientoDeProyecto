@@ -33,6 +33,7 @@ public class Tarea implements Serializable {
     private String responsableId;
     private String proyectoId;
     private Estado estado;
+    private ArrayList<Usuario> asociados=new ArrayList<>();
 
     public ArrayList<Usuario> getAsociados() {
         return asociados;
@@ -42,11 +43,11 @@ public class Tarea implements Serializable {
         this.asociados = asociados;
     }
 
-    private void agregarAsociado(Usuario usuario) {
+    public void agregarAsociado(Usuario usuario) {
         this.asociados.add(usuario);
     }
 
-    private ArrayList<Usuario> asociados;
+    
 
     public Tarea(String nombre, String descripción, String hallazgo, String responsableId, String proyectoId, Estado estado, String cometario, ArrayList<Usuario> asociados) {
         this.nombre = nombre;
