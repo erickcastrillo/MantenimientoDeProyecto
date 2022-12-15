@@ -4,6 +4,7 @@
  */
 package gui;
 
+import data.controladores.HallazgosControlador;
 import data.controladores.ProyectoControlador;
 import data.controladores.TareasControlador;
 import static data.controladores.TareasControlador.listaTareas;
@@ -533,7 +534,7 @@ public class MainWindow extends javax.swing.JFrame {
             fila[1]= tarea.getNombre();
             fila[2]= tarea.getDescripción();
             fila[3]= NombreCompleto;
-            fila[4]= tarea.getHallazgo();
+            fila[4]= TareasControlador.obtenerHallazgosDeTarea(tarea.getId()).size();
             fila[5]= EstadoTarea;
             modelo.addRow(fila);
         }
