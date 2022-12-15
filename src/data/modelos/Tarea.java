@@ -32,24 +32,34 @@ public class Tarea implements Serializable {
     private String responsableId;
     private String proyectoId;
     private Estado estado;
+    private String hallazgo;
+    private String encargadoTarea;
 
-    public String getCometario() {
-        return Cometario;
+    public String getHallazgo() {
+        return hallazgo;
     }
 
-    public void setCometario(String cometario) {
-        Cometario = cometario;
+    public void setHallazgo(String hallazgo) {
+        this.hallazgo += hallazgo +"\n";
     }
 
-    private String Cometario;
 
-    public Tarea(String nombre, String descripción, String responsableId, String proyectoId, Estado estado, String cometario) {
+    public Tarea(String nombre, String encargadoTarea, String descripción,String hallazgo, String responsableId, String proyectoId, Estado estado, String cometario) {
         this.nombre = nombre;
         this.descripción = descripción;
+        this.hallazgo = hallazgo;
         this.responsableId = responsableId;
         this.proyectoId = proyectoId;
         this.estado = estado;
-        Cometario = cometario;
+        this.encargadoTarea = encargadoTarea;
+    }
+    
+    public String getEncargadoTarea() {
+        return encargadoTarea;
+    }
+
+    public void setEncargadoTarea(String encargadoTarea) {
+        this.encargadoTarea = encargadoTarea;
     }
 
     public Tarea() {
@@ -58,7 +68,6 @@ public class Tarea implements Serializable {
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

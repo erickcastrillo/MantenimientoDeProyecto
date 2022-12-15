@@ -108,7 +108,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="340" width="1120" height="360"/>
+          <AbsoluteConstraints x="10" y="340" width="1120" height="360"/>
         </Constraint>
       </Constraints>
 
@@ -156,7 +156,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="180" width="-1" height="40"/>
+          <AbsoluteConstraints x="170" y="180" width="-1" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -245,7 +245,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAgregarComentario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar Comentario"/>
+        <Property name="text" type="java.lang.String" value="Agregar Hallazgo"/>
         <Property name="name" type="java.lang.String" value="btnAgregarComentario" noResource="true"/>
       </Properties>
       <Events>
@@ -253,7 +253,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="280" y="270" width="140" height="30"/>
+          <AbsoluteConstraints x="340" y="270" width="140" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -295,7 +295,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="180" width="-1" height="40"/>
+          <AbsoluteConstraints x="140" y="180" width="-1" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -339,27 +339,27 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblComentarioTarea">
+    <Component class="javax.swing.JLabel" name="lblDescripcionTarea">
       <Properties>
         <Property name="text" type="java.lang.String" value="Descripcion Tarea:"/>
-        <Property name="name" type="java.lang.String" value="lblComentarioTarea" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="lblDescripcionTarea" noResource="true"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="730" y="210" width="-1" height="-1"/>
+          <AbsoluteConstraints x="720" y="210" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtTareaDescripcion">
+    <Component class="javax.swing.JTextField" name="txtDescripcionTarea">
       <Properties>
-        <Property name="name" type="java.lang.String" value="txtTareaDescripcion" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="txtDescripcionTarea" noResource="true"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTareaDescripcionActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDescripcionTareaActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="830" y="210" width="290" height="-1"/>
+          <AbsoluteConstraints x="820" y="210" width="300" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -441,7 +441,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnGuardarComentario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Guardar Comentario"/>
+        <Property name="text" type="java.lang.String" value="Guardar Hallazgo"/>
         <Property name="name" type="java.lang.String" value="btnGuardarComentario" noResource="true"/>
       </Properties>
       <Events>
@@ -449,7 +449,31 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="280" y="270" width="-1" height="30"/>
+          <AbsoluteConstraints x="270" y="270" width="-1" height="30"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblHallazgo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Hallazgo:"/>
+        <Property name="name" type="java.lang.String" value="lblHallazgo" noResource="true"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="740" y="250" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtHallazgo">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="txtHallazgo" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtHallazgoActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="820" y="250" width="300" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

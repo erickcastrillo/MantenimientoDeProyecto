@@ -51,6 +51,8 @@ public class TareasControlador {
     public static ArrayList<Tarea> obtenerTareasPorEstado(Estado estado){
         return tareasRepositorio.getTareasEstado(estado);
     }
+    public static ArrayList<Tarea> listaHallazgoTarea (Tarea tarea){
+        return tareasRepositorio.listaHallazgoTarea(tarea);}
     // Obtener tareas por responsable
     public static ArrayList<Tarea> obtenerTareasPorResponsable(String responsableId){
         return tareasRepositorio.getTareasUsuario(responsableId);

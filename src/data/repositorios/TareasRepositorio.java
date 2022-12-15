@@ -17,6 +17,7 @@
 
 package data.repositorios;
 
+import static data.controladores.TareasControlador.listaTareas;
 import java.util.ArrayList;
 
 import data.modelos.Estado;
@@ -30,7 +31,27 @@ public class TareasRepositorio {
     public ArrayList<Tarea> getTareas() {
         return tareas;
     }
+    public ArrayList<Tarea> getHallazgos() {
+        return tareas;
+    }
+    public void agregarHallazgos(Tarea tarea) {
+        tareas.add(tarea);
+    }
+    
+    public void eliminarHallazgos(String id) {
+        tareas.remove(getHallazgos());
+    }
+    
 
+    public ArrayList<Tarea> listaHallazgoTarea(Tarea tarea) {
+        ArrayList<Tarea> listaHallazgoTarea = new ArrayList<>();
+        for (Tarea tarea : listaHallazgo) {
+            if (tarea.getHallazgo().equals(tarea)) {
+                listaHallazgoTarea.add(tarea);
+            }
+        }
+        return listaHallazgoTarea;
+    }
     // Devolver una tarea por su id
     public Tarea getTarea(String id) {
         for (Tarea tarea : tareas) {
@@ -45,7 +66,7 @@ public class TareasRepositorio {
     public void agregarTarea(Tarea tarea) {
         tareas.add(tarea);
     }
-
+    
     // Eliminar una tarea
     public void eliminarTarea(String id) {
         tareas.remove(getTarea(id));
@@ -151,5 +172,5 @@ public class TareasRepositorio {
             System.out.println("Guardando cambios en las tareas...");
         }, "Shutdown-thread"));
     }
-
+    
 }
