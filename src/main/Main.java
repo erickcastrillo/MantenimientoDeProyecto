@@ -17,9 +17,7 @@
 
 package main;
 
-import data.controladores.ProyectoControlador;
-import data.controladores.TareasControlador;
-import data.controladores.UsuarioControlador;
+import data.controladores.*;
 import gui.LoginWindow;
 
 import javax.swing.*;
@@ -32,6 +30,10 @@ public class Main {
         ProyectoControlador.cargarDatos();
         // Cargar las tareas desde el disco
         TareasControlador.cargarDatos();
+        // Cargar los hallazgos desde el disco
+        HallazgosControlador.cargarDatos();
+        // Cargar los asociados desde el disco
+        AsociadosControlador.cargarDatos();
         // Ejecutar la ventana de Login
         SwingUtilities.invokeLater(LoginWindow::new);
     }

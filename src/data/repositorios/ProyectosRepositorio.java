@@ -17,8 +17,11 @@
 
 package data.repositorios;
 
+import data.controladores.UsuarioControlador;
 import data.modelos.Estado;
 import data.modelos.Proyecto;
+import data.modelos.TipoUsuario;
+import data.modelos.Usuario;
 
 import java.util.*;
 
@@ -62,9 +65,20 @@ public class ProyectosRepositorio {
 
     // Devolver los proyectos de un usuario
     public ArrayList<Proyecto> getProyectosDeUsuario(String usuarioId) {
+        // Buscamos el usuario para asegurarnos de que existe
+        Usuario usuario = UsuarioControlador.getUsuario(usuarioId);
+        // Si el usuario no existe, devolvemos null
+        if(usuario == null) {
+            return null;
+        }
+        // Si el usuario existe y es un administrador, devolvemos todos los proyectos
+        if (usuario.getTipoUsuario() == TipoUsuario.ADMINISTRADOR) {
+            return proyectos;
+        }
+        // Si el usuario existe y no es un administrador, devolvemos los proyectos en los que participa
         ArrayList<Proyecto> proyectosDeUsuario = new ArrayList<>();
         for (Proyecto proyecto : proyectos) {
-            if (proyecto.getResponsableId().equals(usuarioId)) {
+            if (proyecto.getResponsableId().equals(usuario.getId())) {
                 proyectosDeUsuario.add(proyecto);
             }
         }

@@ -66,8 +66,10 @@ public class TareasRepositorio {
     public ArrayList<Tarea> getTareasUsuario(String usuarioId) {
         ArrayList<Tarea> tareasUsuario = new ArrayList<>();
         for (Tarea tarea : tareas) {
-            if (tarea.getResponsableId().equals(usuarioId)) {
-                tareasUsuario.add(tarea);
+            if(tarea.getResponsableId() != null){
+                if (tarea.getResponsableId().equals(usuarioId)) {
+                    tareasUsuario.add(tarea);
+                }
             }
         }
         return tareasUsuario;
@@ -77,8 +79,10 @@ public class TareasRepositorio {
     public ArrayList<Tarea> getTareasProyecto(String proyectoId) {
         ArrayList<Tarea> tareasProyecto = new ArrayList<>();
         for (Tarea tarea : tareas) {
-            if (tarea.getProyectoId().equals(proyectoId)) {
-                tareasProyecto.add(tarea);
+            if(tarea.getProyectoId() != null){
+                if (tarea.getProyectoId().equals(proyectoId)) {
+                    tareasProyecto.add(tarea);
+                }
             }
         }
         return tareasProyecto;

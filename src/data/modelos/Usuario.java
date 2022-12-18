@@ -81,6 +81,10 @@ public class Usuario implements Serializable {
         this.nombre = nombre;
     }
 
+    public String nombreCompleto() {
+        return nombre + " " + primerApellido + " " + segundoApellido;
+    }
+
     public String getPrimerApellido() {
         return primerApellido;
     }
@@ -155,5 +159,10 @@ public class Usuario implements Serializable {
 
     public void setCódigoDeVerificación(String códigoDeVerificación) {
         this.códigoDeVerificación = códigoDeVerificación;
+    }
+
+    @Override
+    public String toString() {
+        return nombreCompleto();
     }
 }
