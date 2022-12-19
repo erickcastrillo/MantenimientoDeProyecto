@@ -43,6 +43,8 @@ public class UsuariosRepositorio {
 
     // Agregar un usuario
     public Boolean agregarUsuario(Usuario usuario) {
+        usuario.setBloqueado(false);
+        usuario.setIntentosFallidos(0);
         return this.usuarios.add(usuario);
     }
 

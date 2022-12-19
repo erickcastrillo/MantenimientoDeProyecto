@@ -38,6 +38,7 @@ public class UsuariosRenderer extends JLabel implements ListCellRenderer<Usuario
                 <p>Primer apellido: {1}</p>
                 <p>Segundo apellido: {2}</p>
                 <p>Tipo usuario: {3}</p>
+                <p>Bloqueado: {4}</p>
                 <br/>
                 </body>
                 </html>
@@ -45,7 +46,8 @@ public class UsuariosRenderer extends JLabel implements ListCellRenderer<Usuario
                 usuario.getNombre(),
                 usuario.getPrimerApellido(),
                 usuario.getSegundoApellido(),
-                usuario.getTipoUsuario().toString()
+                usuario.getTipoUsuario().toString(),
+                usuario.getBloqueado()
         );
         setText(mensaje);
         setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK), BorderFactory.createEmptyBorder(0, 15, 0, 5)));

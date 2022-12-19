@@ -43,6 +43,7 @@ public class Constantes {
     public static final Dimension DIMENSION_LISTA_USUARIOS_DETALLE = new Dimension(400, 400);
     public static final Dimension DIMENSION_LISTA_USUARIOS_LISTA_DETALLE = new Dimension(400, 330);
     public static final Dimension DIMENSION_BOTÓN = new Dimension(150, 30);
+    public static final Dimension DIMENSION_BOTÓN_GRANDE = new Dimension(300, 30);
 
     // Colores
     public static final Color COLOR_FONDO = new Color(255, 255, 255);

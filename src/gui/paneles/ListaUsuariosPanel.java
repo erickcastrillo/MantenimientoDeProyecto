@@ -145,11 +145,11 @@ public class ListaUsuariosPanel extends JPanel implements Custumizable {
             add(eliminarUsuarioButton);
 
             // Agregamos el botón de eliminar proyecto
-            JButton desbloquearUsuarioButton = new JButton("Desbloquear usuario");
+            JButton desbloquearUsuarioButton = new JButton("Desbloquear/desbloquear usuario");
             desbloquearUsuarioButton.setFont(Constantes.FUENTE_NORMAL);
-            desbloquearUsuarioButton.setPreferredSize(Constantes.DIMENSION_BOTÓN);
-            desbloquearUsuarioButton.setMaximumSize(Constantes.DIMENSION_BOTÓN);
-            desbloquearUsuarioButton.setMinimumSize(Constantes.DIMENSION_BOTÓN);
+            desbloquearUsuarioButton.setPreferredSize(Constantes.DIMENSION_BOTÓN_GRANDE);
+            desbloquearUsuarioButton.setMaximumSize(Constantes.DIMENSION_BOTÓN_GRANDE);
+            desbloquearUsuarioButton.setMinimumSize(Constantes.DIMENSION_BOTÓN_GRANDE);
             desbloquearUsuarioButton.addActionListener(e -> {
                 desbloquearUsuario();
             });
@@ -268,7 +268,7 @@ public class ListaUsuariosPanel extends JPanel implements Custumizable {
         if (u != null) {
             int respuesta = JOptionPane.showConfirmDialog(null,
                     MessageFormat.format(
-                            "¿Está seguro que desea desbloquear el usuario {0}?",
+                            "¿Está seguro que desea desbloquear/desbloquear el usuario {0}?",
                             u.nombreCompleto()
                     ),
                     Constantes.TITULO,
@@ -277,12 +277,15 @@ public class ListaUsuariosPanel extends JPanel implements Custumizable {
             );
 
             if (respuesta == JOptionPane.YES_OPTION){
-                u.setBloqueado(false);
-                u.setIntentosFallidos(0);
+                if(u.getBloqueado() != null){
+                    u.setIntentosFallidos(0);
+                    u.setBloqueado(!u.getBloqueado());
+                }
+
                 UsuarioControlador.actualizarUsuario(u);
                 model.setElementAt(u, lista.getSelectedIndex());
                 JOptionPane.showMessageDialog(null,
-                        "Usuario desbloqueado correctamente",
+                        "Usuario actualizado correctamente",
                         Constantes.TITULO,
                         JOptionPane.INFORMATION_MESSAGE
                 );
