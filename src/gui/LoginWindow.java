@@ -18,7 +18,6 @@
 package gui;
 
 import data.controladores.UsuarioControlador;
-import data.modelos.TipoUsuario;
 import data.modelos.Usuario;
 import gui.popups.JOptionsPanePassword;
 import utilidades.Seguridad;
@@ -28,16 +27,9 @@ import javax.swing.*;
 import java.util.Objects;
 
 public class LoginWindow extends JFrame implements Custumizable {
-    private JPanel panel;
-    private JLabel lblUsuario;
-    private JLabel lblContraseña;
     private JTextField txtUsuario;
     private JPasswordField txtContraseña;
-    private JButton btnIngresar;
-    private JButton btnSalir;
-    private JButton btnRegistrarse;
-    private JButton btnOlvidéMiContraseña;
-    private JButton btnDesbloquearCuenta;
+
     public LoginWindow() {
         inicializar();
     }
@@ -60,30 +52,30 @@ public class LoginWindow extends JFrame implements Custumizable {
         setLocationRelativeTo(null);
         setResizable(false);
         setTitle("Login");
-        panel = new JPanel();
+        JPanel panel = new JPanel();
         panel.setLayout(null);
-        lblUsuario = new JLabel("Teléfono");
+        JLabel lblUsuario = new JLabel("Teléfono");
         lblUsuario.setBounds(50, 50, 100, 30);
-        lblContraseña = new JLabel("Contraseña");
+        JLabel lblContraseña = new JLabel("Contraseña");
         lblContraseña.setBounds(50, 100, 100, 30);
         txtUsuario = new JTextField();
         txtUsuario.setBounds(150, 50, 200, 30);
         txtContraseña = new JPasswordField();
         txtContraseña.setBounds(150, 100, 200, 30);
-        btnIngresar = new JButton("Ingresar");
-        btnIngresar.addActionListener(e -> {iniciarSesión();});
+        JButton btnIngresar = new JButton("Ingresar");
+        btnIngresar.addActionListener(e -> iniciarSesión());
         btnIngresar.setBounds(50, 150, 100, 30);
-        btnSalir = new JButton("Salir");
-        btnSalir.addActionListener(e -> {salir();});
+        JButton btnSalir = new JButton("Salir");
+        btnSalir.addActionListener(e -> salir());
         btnSalir.setBounds(250, 150, 100, 30);
-        btnRegistrarse = new JButton("Registrarse");
-        btnRegistrarse.addActionListener(e -> {registrarse();});
+        JButton btnRegistrarse = new JButton("Registrarse");
+        btnRegistrarse.addActionListener(e -> registrarse());
         btnRegistrarse.setBounds(50, 200, 100, 30);
-        btnOlvidéMiContraseña = new JButton("Olvidé mi contraseña");
-        btnOlvidéMiContraseña.addActionListener(e -> {recuperarContraseña();});
+        JButton btnOlvidéMiContraseña = new JButton("Olvidé mi contraseña");
+        btnOlvidéMiContraseña.addActionListener(e -> recuperarContraseña());
         btnOlvidéMiContraseña.setBounds(200, 200, 150, 30);
-        btnDesbloquearCuenta = new JButton("Desbloquear cuenta");
-        btnDesbloquearCuenta.addActionListener(e -> {desbloquearCuenta();});
+        JButton btnDesbloquearCuenta = new JButton("Desbloquear cuenta");
+        btnDesbloquearCuenta.addActionListener(e -> desbloquearCuenta());
         btnDesbloquearCuenta.setBounds(200, 250, 150, 30);
         panel.add(lblUsuario);
         panel.add(lblContraseña);
@@ -199,10 +191,7 @@ public class LoginWindow extends JFrame implements Custumizable {
                 "Login",
                 JOptionPane.INFORMATION_MESSAGE);
 
-        // TODO: Abrir la ventana principal
         SwingUtilities.invokeLater(() -> {
-            // TODO: BORRAR ESTO
-            usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
             new PrincipalWindow(usuario);
             dispose();
         });
@@ -255,7 +244,6 @@ public class LoginWindow extends JFrame implements Custumizable {
                     "No se pudo enviar el correo de verificación",
                     "Recuperar contraseña",
                     JOptionPane.ERROR_MESSAGE);
-            return;
         }
     }
 

@@ -61,7 +61,6 @@ public class PrincipalWindow extends JFrame implements Custumizable {
         });
         // Cambiar el color de fondo
         getContentPane().setBackground(Constantes.COLOR_FONDO);
-        // TODO: Cambiar el icono de la ventana
 
         // Agregar titulo a la ventana
         JLabel titulo = new JLabel(Constantes.TITULO_VENTANA_PRINCIPAL + usuario.nombreCompleto());
@@ -146,7 +145,7 @@ public class PrincipalWindow extends JFrame implements Custumizable {
 
     public void actualizarDetallesUsuario(Usuario usuario){
         System.out.println("Actualizando detalles de usuario " + usuario.nombreCompleto());
-        // TODO: Actualizar detalles de usuario
+
         revalidate();
         repaint();
     }

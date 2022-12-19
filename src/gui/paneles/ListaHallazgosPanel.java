@@ -18,7 +18,6 @@
 package gui.paneles;
 
 import data.controladores.HallazgosControlador;
-import data.controladores.TareasControlador;
 import data.modelos.Hallazgo;
 import data.modelos.Tarea;
 import data.modelos.Usuario;
@@ -26,7 +25,6 @@ import gui.Constantes;
 import gui.Custumizable;
 import gui.PrincipalWindow;
 import gui.helpers.HallazgosRenderer;
-import gui.helpers.TareaRenderer;
 import gui.popups.JOptionsPaneHallazgo;
 
 import javax.swing.*;
@@ -78,16 +76,6 @@ public class ListaHallazgosPanel extends JPanel implements Custumizable {
         listaHallazgos.setCellRenderer(new HallazgosRenderer());
         listaHallazgos.setBackground(Constantes.COLOR_FONDO);
 
-        // Agregar un evento para cuando se seleccione una tarea
-        listaHallazgos.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                if (evt.getClickCount() == 2) {
-                    // TODO: Agregar acción para cuando se le da doble click
-                }
-            }
-        });
-
         // Agregar scroll
         JScrollPane scrollPane = new JScrollPane(listaHallazgos);
         scrollPane.setPreferredSize(Constantes.DIMENSION_LISTA_TAREAS_LISTA);
@@ -103,9 +91,7 @@ public class ListaHallazgosPanel extends JPanel implements Custumizable {
         agregarHallazgoButton.setPreferredSize(Constantes.DIMENSION_BOTÓN);
         agregarHallazgoButton.setMaximumSize(Constantes.DIMENSION_BOTÓN);
         agregarHallazgoButton.setMinimumSize(Constantes.DIMENSION_BOTÓN);
-        agregarHallazgoButton.addActionListener(e -> {
-            agregarHallazgo();
-        });
+        agregarHallazgoButton.addActionListener(e -> agregarHallazgo());
         // add(agregarHallazgoButton);
 
         // Agregamos el botón de editar tarea
@@ -114,9 +100,7 @@ public class ListaHallazgosPanel extends JPanel implements Custumizable {
         editarHallazgoButton.setPreferredSize(Constantes.DIMENSION_BOTÓN);
         editarHallazgoButton.setMaximumSize(Constantes.DIMENSION_BOTÓN);
         editarHallazgoButton.setMinimumSize(Constantes.DIMENSION_BOTÓN);
-        editarHallazgoButton.addActionListener(e -> {
-            editarHallazgo();
-        });
+        editarHallazgoButton.addActionListener(e -> editarHallazgo());
         // add(editarHallazgoButton);
 
         // Agregamos el botón de eliminar tarea
@@ -125,9 +109,7 @@ public class ListaHallazgosPanel extends JPanel implements Custumizable {
         eliminarHallazgoButton.setPreferredSize(Constantes.DIMENSION_BOTÓN);
         eliminarHallazgoButton.setMaximumSize(Constantes.DIMENSION_BOTÓN);
         eliminarHallazgoButton.setMinimumSize(Constantes.DIMENSION_BOTÓN);
-        eliminarHallazgoButton.addActionListener(e -> {
-            eliminarHallazgo();
-        });
+        eliminarHallazgoButton.addActionListener(e -> eliminarHallazgo());
 
         // Agregamos el botón de agregar hallazgo a tarea
         JButton agregarHallazgoTareaButton = new JButton("Agregar hallazgo");
@@ -135,9 +117,7 @@ public class ListaHallazgosPanel extends JPanel implements Custumizable {
         agregarHallazgoTareaButton.setPreferredSize(Constantes.DIMENSION_BOTÓN);
         agregarHallazgoTareaButton.setMaximumSize(Constantes.DIMENSION_BOTÓN);
         agregarHallazgoTareaButton.setMinimumSize(Constantes.DIMENSION_BOTÓN);
-        agregarHallazgoTareaButton.addActionListener(e -> {
-            agregarHallazgo();
-        });
+        agregarHallazgoTareaButton.addActionListener(e -> agregarHallazgo());
         // add(eliminarHallazgoButton);
 
         JPanel panelBotones = new JPanel();
