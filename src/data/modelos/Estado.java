@@ -23,9 +23,10 @@ package data.modelos;
  * 603630082EC
  */
 public enum Estado {
+    NUEVO,
     PENDIENTE,
     EN_DESARROLLO,
-    SUSPENDIDA,
-    CANCELADA,
-    TERMINADA
+    SUSPENDIDO,
+    CANCELADO,
+    TERMINADO
 }

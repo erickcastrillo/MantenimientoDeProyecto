@@ -17,7 +17,7 @@
 
 package data.controladores;
 
-import data.modelos.Usuario;
+import data.modelos.*;
 import data.repositorios.UsuariosRepositorio;
 
 import java.util.ArrayList;
@@ -30,6 +30,16 @@ public class UsuarioControlador {
     public static ArrayList<Usuario> listaUsuarios(){
         return usuariosRepositorio.getUsuarios();
     }
+    // Devuelve una lista de usuarios por usuario
+    public static ArrayList<Usuario> listaUsuariosPorUsuario(Usuario usuario){
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        // Si el usuario es administrador, se devuelven todos los usuarios
+        if(usuario.getTipoUsuario() == TipoUsuario.ADMINISTRADOR){
+            return usuariosRepositorio.getUsuarios();
+        } else {
+            return usuarios;
+        }
+    }
     // Devuelve un usuario por su ID
     public static Usuario getUsuario(String id){
         return usuariosRepositorio.getUsuario(id);
@@ -39,8 +49,23 @@ public class UsuarioControlador {
         return usuariosRepositorio.agregarUsuario(usuario);
     }
     // Elimina un usuario
-    public static boolean eliminarUsuario(String id){
-        return usuariosRepositorio.eliminarUsuario(id);
+    public static void eliminarUsuario(String id){
+        // Eliminar el usuario de los proyectos
+        for(Proyecto proyecto : ProyectoControlador.obtenerProyectosPorResponsable(id)){
+            proyecto.setResponsableId(null);
+            ProyectoControlador.actualizarProyecto(proyecto);
+        }
+        // Eliminar el usuario de las tareas
+        for(Tarea tarea : TareasControlador.obtenerTareasPorResponsable(id)){
+            tarea.setResponsableId(null);
+            TareasControlador.actualizarTarea(tarea);
+        }
+        // Eliminar el usuario de los hallazgos
+        for(Hallazgo hallazgo : HallazgosControlador.getHallazgosPorResponsable(id)){
+            hallazgo.setResponsableId(null);
+            HallazgosControlador.actualizarHallazgo(hallazgo);
+        }
+        usuariosRepositorio.eliminarUsuario(id);
     }
     // Actualiza un usuario
     public static void actualizarUsuario(Usuario usuario){

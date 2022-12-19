@@ -15,26 +15,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package main;
+package gui.paneles;
 
-import data.controladores.*;
-import gui.LoginWindow;
+import gui.Custumizable;
 
 import javax.swing.*;
 
-public class Main {
-    public static void main(String[] args) {
-        // Cargar los usuarios desde el disco
-        UsuarioControlador.cargarDatos();
-        // Cargar los proyectos desde el disco
-        ProyectoControlador.cargarDatos();
-        // Cargar las tareas desde el disco
-        TareasControlador.cargarDatos();
-        // Cargar los hallazgos desde el disco
-        HallazgosControlador.cargarDatos();
-        // Cargar los asociados desde el disco
-        AsociadosControlador.cargarDatos();
-        // Ejecutar la ventana de Login
-        SwingUtilities.invokeLater(LoginWindow::new);
+public class DatosUsuariosPanel extends JPanel implements Custumizable {
+    public DatosUsuariosPanel(){
+        inicializar();
+    }
+    @Override
+    public void inicializar() {
+
+    }
+
+    @Override
+    public void actualizar() {
+
     }
 }

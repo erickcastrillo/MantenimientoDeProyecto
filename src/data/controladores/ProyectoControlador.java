@@ -19,8 +19,11 @@ package data.controladores;
 
 import data.modelos.Estado;
 import data.modelos.Proyecto;
+import data.modelos.Usuario;
 import data.repositorios.ProyectosRepositorio;
+import utilidades.EnviarCorreo;
 
+import javax.mail.MessagingException;
 import java.util.ArrayList;
 
 public class ProyectoControlador {
@@ -40,10 +43,40 @@ public class ProyectoControlador {
     // Agregar un proyecto
     public static void agregarProyecto(Proyecto proyecto){
         proyectosRepositorio.agregarProyecto(proyecto);
+        if(proyecto.getResponsableId() != null){
+            // Se obtiene el responsable del proyecto
+            Usuario responsable = UsuarioControlador.getUsuario(proyecto.getResponsableId());
+            // Enviar correo al responsable
+            String asunto = "Nuevo proyecto asignado";
+            String cuerpo = "Hola " + responsable.getNombre() + ",\n\n"
+                    + "Se ha creado un proyecto nuevo y se te ha asignado como responsable" + "\n\n"
+                    + "Nombre del proyecto: " + proyecto.getNombre() + "\n"
+                    + "Descripción: " + proyecto.getDescripción() + "\n\n"
+                    + "Saludos,\n"
+                    + "Equipo de desarrollo de la aplicación";
+            // Como el proceso puede tardar, se ejecuta en un hilo aparte y asi evitar bloquear el hilo principal
+            Thread thread = new Thread(() -> {
+                try {
+                    EnviarCorreo.enviarCorreoJava(
+                            responsable.getCorreoElectrónico(),
+                            "",
+                            "",
+                            asunto,
+                            cuerpo
+                    );
+                } catch (MessagingException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            thread.start();
+        }
     }
     // Eliminar un proyecto
     public static void eliminarProyecto(String id){
+        // Eliminar el proyecto
         proyectosRepositorio.eliminarProyecto(id);
+        // ELiminar tareas
+        TareasControlador.eliminarTareasProyecto(id);
     }
     // Actualizar un proyecto
     public static void actualizarProyecto(Proyecto proyecto){

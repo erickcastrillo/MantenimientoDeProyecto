@@ -54,7 +54,13 @@ public class Seguridad {
         // Como el proceso puede tardar, se ejecuta en un hilo aparte y asi evitar bloquear el hilo principal
         Thread thread = new Thread(() -> {
             try {
-                EnviarCorreo.enviarCorreoJava(usuario.getCorreoElectrónico(), asunto, cuerpo);
+                EnviarCorreo.enviarCorreoJava(
+                        usuario.getCorreoElectrónico(),
+                        "",
+                        "",
+                        asunto,
+                        cuerpo
+                );
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             }

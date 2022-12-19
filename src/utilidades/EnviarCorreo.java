@@ -17,6 +17,7 @@
 
 package utilidades;
 
+import java.util.Objects;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -32,7 +33,7 @@ import javax.mail.internet.MimeMessage;
 public class EnviarCorreo {
     private static final Configuración configuración = Configuración.getInstancia();
     // Enviar correo electrónico en Java a través del servidor SMTP proporcionado por el proveedor de alojamiento
-    public static void enviarCorreoJava(String correoDestino, String asunto, String mensaje) throws MessagingException {
+    public static void enviarCorreoJava(String correoDestino,String CC, String BCC, String asunto, String mensaje) throws MessagingException {
         String from = "erick.castrillo@outlook.com";
         String host = "smtp.sendgrid.net";
 
@@ -55,6 +56,12 @@ public class EnviarCorreo {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(correoDestino));
+            if (!Objects.equals(CC, "") && !Objects.equals(CC, null)){
+                message.addRecipient(Message.RecipientType.CC, new InternetAddress(CC));
+            }
+            if (!Objects.equals(BCC, "") && !Objects.equals(BCC, null)){
+                message.addRecipient(Message.RecipientType.BCC, new InternetAddress(BCC));
+            }
             message.setSubject(asunto);
             message.setText(mensaje);
 
@@ -63,18 +70,5 @@ public class EnviarCorreo {
             System.out.println("Error al enviar el correo: " + mex.getMessage());
             throw mex;
         }
-    }
-
-    // Main para probar el envío de correo
-    public static void main(String[] args) {
-        // enviarCorreoSendGrid("erick.castrillo@gmail.com", "Prueba de envío de correo", "Este es un mensaje de prueba");
-        Thread thread = new Thread(() -> {
-            try {
-                enviarCorreoJava("erick.castrillo@gmail.com", "Prueba de envío de correo", "Este es un mensaje de prueba");
-            } catch (MessagingException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        thread.start();
     }
 }

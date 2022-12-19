@@ -18,11 +18,14 @@
 package gui;
 
 import data.controladores.UsuarioControlador;
+import data.modelos.TipoUsuario;
 import data.modelos.Usuario;
+import gui.popups.JOptionsPanePassword;
 import utilidades.Seguridad;
 
 import javax.mail.MessagingException;
 import javax.swing.*;
+import java.util.Objects;
 
 public class LoginWindow extends JFrame implements Custumizable {
     private JPanel panel;
@@ -124,11 +127,11 @@ public class LoginWindow extends JFrame implements Custumizable {
             return;
         }
         // Crear una contraseña nueva
-        String contraseña = JOptionPane.showInputDialog(null, "Ingrese una nueva contraseña", "Desbloquear cuenta", JOptionPane.QUESTION_MESSAGE);
+        String contraseña = JOptionsPanePassword.showClavePrompt(null, "Ingrese una nueva contraseña", "Desbloquear cuenta");
         // Volver a validar la contraseña
-        String contraseña2 = JOptionPane.showInputDialog(null, "Ingrese nuevamente la contraseña", "Desbloquear cuenta", JOptionPane.QUESTION_MESSAGE);
+        String contraseña2 = JOptionsPanePassword.showClavePrompt(null, "Ingrese nuevamente la contraseña", "Desbloquear cuenta");
         // Validar contraseñas
-        if (!contraseña.equals(contraseña2)) {
+        if (!Objects.equals(contraseña, contraseña2)) {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Desbloquear cuenta", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -192,15 +195,15 @@ public class LoginWindow extends JFrame implements Custumizable {
 
         // Mostrar mensaje de bienvenida
         JOptionPane.showMessageDialog(null,
-                "Bienvenido " + usuario.getNombre(),
+                "Bienvenido " + usuario.nombreCompleto(),
                 "Login",
                 JOptionPane.INFORMATION_MESSAGE);
 
         // TODO: Abrir la ventana principal
         SwingUtilities.invokeLater(() -> {
-            MainWindow ventana = new MainWindow();
-            ventana.IDUsuarioLogeado = usuario.getId();
-            ventana.setVisible(true);
+            // TODO: BORRAR ESTO
+            usuario.setTipoUsuario(TipoUsuario.ADMINISTRADOR);
+            new PrincipalWindow(usuario);
             dispose();
         });
     }

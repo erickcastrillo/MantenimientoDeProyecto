@@ -61,4 +61,9 @@ public class Hallazgo implements Serializable {
     public void setTareaId(String tareaId) {
         this.tareaId = tareaId;
     }
+
+    @Override
+    public String toString() {
+        return comentario;
+    }
 }
