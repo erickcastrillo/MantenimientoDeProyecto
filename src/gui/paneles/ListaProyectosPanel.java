@@ -75,10 +75,11 @@ public class ListaProyectosPanel extends JPanel implements Custumizable {
         lista.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                if (evt.getClickCount() == 2) {
-                    Proyecto proyecto = lista.getSelectedValue();
-                    ventana.actualizarListaTareasProyectos(proyecto);
-                }
+            if (evt.getClickCount() == 2) {
+                Proyecto proyecto = lista.getSelectedValue();
+                ventana.actualizarListaTareasProyectos(proyecto);
+                ventana.actualizarListaHallazgos();
+            }
             }
         });
 
@@ -167,7 +168,7 @@ public class ListaProyectosPanel extends JPanel implements Custumizable {
             Proyecto proyecto = lista.getSelectedValue();
             HashMap<String, String> proyectoData = JOptionsPaneProyecto.showProyectoNuevoPrompt(
                     null,
-                    "Nuevo proyecto",
+                    "Editar proyecto",
                     "Ingrese los datos del proyecto",
                     usuario,
                     proyecto

@@ -26,22 +26,13 @@ import javax.swing.*;
 public class RegistrarWindow extends JFrame implements Custumizable {
     private JPanel panel;
     JLabel lblTitulo;
-    private JLabel lblCédula;
     private JTextField txtCédula;
-    private JLabel lblNombre;
     private JTextField txtNombre;
-    private JLabel lblPrimerApellido;
     private JTextField txtPrimerApellido;
-    private JLabel lblSegundoApellido;
     private JTextField txtSegundoApellido;
-    private JLabel lblCorreoElectrónico;
     private JTextField txtCorreoElectrónico;
-    private JLabel lblTeléfono;
     private JTextField txtTeléfono;
-    private JLabel lblClave;
     private JPasswordField txtClave;
-    private JButton btnRegistrar;
-    private JButton btnSalir;
 
     // Constructor
     public RegistrarWindow() {
@@ -76,31 +67,31 @@ public class RegistrarWindow extends JFrame implements Custumizable {
         // Crear los componentes
         lblTitulo = new JLabel("Registro de usuario");
         lblTitulo.setBounds(100, 10, 300, 30);
-        lblCédula = new JLabel("Cédula");
+        JLabel lblCédula = new JLabel("Cédula");
         lblCédula.setBounds(50, 50, 300, 30);
         txtCédula = new JTextField();
         txtCédula.setBounds(50, 80, 300, 30);
-        lblNombre = new JLabel("Nombre");
+        JLabel lblNombre = new JLabel("Nombre");
         lblNombre.setBounds(50, 120, 300, 30);
         txtNombre = new JTextField();
         txtNombre.setBounds(50, 150, 300, 30);
-        lblPrimerApellido = new JLabel("Primer Apellido");
+        JLabel lblPrimerApellido = new JLabel("Primer Apellido");
         lblPrimerApellido.setBounds(50, 190, 300, 30);
         txtPrimerApellido = new JTextField();
         txtPrimerApellido.setBounds(50, 220, 300, 30);
-        lblSegundoApellido = new JLabel("Segundo Apellido");
+        JLabel lblSegundoApellido = new JLabel("Segundo Apellido");
         lblSegundoApellido.setBounds(50, 260, 300, 30);
         txtSegundoApellido = new JTextField();
         txtSegundoApellido.setBounds(50, 290, 300, 30);
-        lblCorreoElectrónico = new JLabel("Correo Electrónico");
+        JLabel lblCorreoElectrónico = new JLabel("Correo Electrónico");
         lblCorreoElectrónico.setBounds(50, 330, 300, 30);
         txtCorreoElectrónico = new JTextField();
         txtCorreoElectrónico.setBounds(50, 360, 300, 30);
-        lblTeléfono = new JLabel("Teléfono");
+        JLabel lblTeléfono = new JLabel("Teléfono");
         lblTeléfono.setBounds(50, 400, 300, 30);
         txtTeléfono = new JTextField();
         txtTeléfono.setBounds(50, 430, 300, 30);
-        lblClave = new JLabel("Clave");
+        JLabel lblClave = new JLabel("Clave");
         lblClave.setBounds(50, 470, 300, 30);
         txtClave = new JPasswordField();
         txtClave.setBounds(50, 500, 300, 30);
@@ -121,10 +112,10 @@ public class RegistrarWindow extends JFrame implements Custumizable {
         panel.add(lblClave);
         panel.add(txtClave);
         // Agregar los botones
-        btnRegistrar = new JButton("Registrar");
+        JButton btnRegistrar = new JButton("Registrar");
         btnRegistrar.setBounds(50, 610, 150, 30);
         btnRegistrar.addActionListener(e -> {registrar();});
-        btnSalir = new JButton("Salir");
+        JButton btnSalir = new JButton("Salir");
         btnSalir.setBounds(200, 610, 150, 30);
         btnSalir.addActionListener(e -> {salir();});
         panel.add(btnRegistrar);

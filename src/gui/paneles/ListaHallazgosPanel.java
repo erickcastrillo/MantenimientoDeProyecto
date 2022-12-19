@@ -17,6 +17,8 @@
 
 package gui.paneles;
 
+import data.controladores.HallazgosControlador;
+import data.controladores.TareasControlador;
 import data.modelos.Hallazgo;
 import data.modelos.Tarea;
 import data.modelos.Usuario;
@@ -25,9 +27,12 @@ import gui.Custumizable;
 import gui.PrincipalWindow;
 import gui.helpers.HallazgosRenderer;
 import gui.helpers.TareaRenderer;
+import gui.popups.JOptionsPaneHallazgo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.MessageFormat;
+import java.util.HashMap;
 
 public class ListaHallazgosPanel extends JPanel implements Custumizable {
     private JList<Hallazgo> listaHallazgos;
@@ -149,16 +154,88 @@ public class ListaHallazgosPanel extends JPanel implements Custumizable {
     }
 
     private void eliminarHallazgo() {
+        Hallazgo hallazgo = listaHallazgos.getSelectedValue();
+        if (hallazgo != null) {
+            int respuesta = JOptionPane.showConfirmDialog(null,
+                    MessageFormat.format(
+                            "¿Está seguro que desea eliminar el hallazgo {0}?",
+                            hallazgo.getComentario()
+                    ),
+                    Constantes.TITULO,
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE
+            );
+
+            if (respuesta == JOptionPane.YES_OPTION){
+                HallazgosControlador.eliminarHallazgo(hallazgo.getId());
+                model.removeElement(hallazgo);
+                JOptionPane.showMessageDialog(null,
+                        "Hallazgo eliminado correctamente",
+                        Constantes.TITULO,
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+            ventana.revalidate();
+            ventana.repaint();
+        }
     }
 
     private void editarHallazgo() {
+        Hallazgo hallazgo = listaHallazgos.getSelectedValue();
+        if (hallazgo != null) {
+            HashMap<String, String> hallazgoData = JOptionsPaneHallazgo.showHallazgoNuevoPrompt(
+                    null,
+                    "Editar hallazgo",
+                    "Ingrese los datos del hallazgo",
+                    usuario,
+                    hallazgo
+            );
+            if(hallazgoData != null){
+                hallazgo.setComentario(hallazgoData.get("comentario"));
+                hallazgo.setResponsableId(hallazgoData.get("responsableId"));
+                HallazgosControlador.actualizarHallazgo(hallazgo);
+                model.setElementAt(hallazgo, listaHallazgos.getSelectedIndex());
+            }
+        }
     }
 
     private void agregarHallazgo() {
+        if (tarea == null) {
+            JOptionPane.showConfirmDialog(null,
+                    "Debes elegir una tarea para agregar un hallazgo",
+                    Constantes.TITULO,
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+        HashMap<String, String> hallazgoData = JOptionsPaneHallazgo.showHallazgoNuevoPrompt(
+                null,
+                "Tarea " + tarea.getNombre(),
+                "Ingrese los datos del hallazgo",
+                usuario,
+                null
+        );
+        if(hallazgoData != null){
+            Hallazgo hallazgo = new Hallazgo();
+            hallazgo.setComentario(hallazgoData.get("comentario"));
+            hallazgo.setTareaId(tarea.getId());
+            hallazgo.setResponsableId(hallazgoData.get("responsableId"));
+
+            HallazgosControlador.agregarHallazgo(hallazgo);
+            model.addElement(hallazgo);
+            ventana.revalidate();
+            ventana.repaint();
+        }
     }
 
     @Override
     public void actualizar() {
-
+        model.clear();
+        if (tarea != null) {
+            for (Hallazgo hallazgo : HallazgosControlador.getHallazgosAsociados(tarea.getId())) {
+                model.addElement(hallazgo);
+            }
+        }
     }
 }

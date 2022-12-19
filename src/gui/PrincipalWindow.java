@@ -19,10 +19,9 @@ package gui;
 
 import data.controladores.UsuarioControlador;
 import data.modelos.Proyecto;
+import data.modelos.Tarea;
 import data.modelos.Usuario;
-import gui.paneles.ListaHallazgosPanel;
-import gui.paneles.ListaProyectosPanel;
-import gui.paneles.ListaTareasPanel;
+import gui.paneles.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +30,7 @@ public class PrincipalWindow extends JFrame implements Custumizable {
     private final Usuario usuario;
     private ListaProyectosPanel listaProyectos;
     private ListaTareasPanel listaTareas;
+    private ListaHallazgosPanel hallazgosPanel;
     public PrincipalWindow(Usuario usuario) {
         if(usuario == null) {
             this.usuario = UsuarioControlador.getUsuarioPorTeléfono("71129023");
@@ -63,8 +63,6 @@ public class PrincipalWindow extends JFrame implements Custumizable {
         getContentPane().setBackground(Constantes.COLOR_FONDO);
         // TODO: Cambiar el icono de la ventana
 
-        // TODO: Agregar menú
-
         // Agregar titulo a la ventana
         JLabel titulo = new JLabel(Constantes.TITULO_VENTANA_PRINCIPAL + usuario.nombreCompleto());
         titulo.setFont(Constantes.FUENTE_TITULO);
@@ -92,16 +90,28 @@ public class PrincipalWindow extends JFrame implements Custumizable {
         panelProyectos.add(listaTareas, BorderLayout.CENTER);
 
         // Agregar el panel de hallazgos
-        ListaHallazgosPanel hallazgosPanel = new ListaHallazgosPanel(this, usuario);
+        hallazgosPanel = new ListaHallazgosPanel(this, usuario);
 
         // Agregar el panel de hallazgos al panel de proyectos
         panelProyectos.add(hallazgosPanel, BorderLayout.EAST);
 
+        // Panel de lista de usuarios y datos de usuario
+        ListaUsuariosPanel listaUsuariosPanel = new ListaUsuariosPanel(this, usuario);
+        DatosUsuariosPanel datosUsuariosPanel = new DatosUsuariosPanel();
+        // Panel de usuarios
+        JPanel panelUsuarios = new JPanel();
+        panelUsuarios.setBackground(Constantes.COLOR_FONDO);
+        panelUsuarios.setLayout(new BorderLayout());
+        // Agregamos los paneles relacionados a usuarios
+        panelUsuarios.add(listaUsuariosPanel, BorderLayout.WEST);
+        panelUsuarios.add(datosUsuariosPanel, BorderLayout.CENTER);
+
         panelTab.addTab("Proyectos", panelProyectos);
+        panelTab.addTab("Administración", panelUsuarios);
         
         add(panelTab, BorderLayout.CENTER);
+
         // Mostrar la ventana
-        
         setVisible(true);
     }
 
@@ -114,6 +124,29 @@ public class PrincipalWindow extends JFrame implements Custumizable {
         System.out.println("Actualizando lista de tareas del proyecto " + proyecto.getNombre());
         listaTareas.setProyecto(proyecto);
         listaTareas.actualizar();
+        revalidate();
+        repaint();
+    }
+
+    public void actualizarListaHallazgosTarea(Tarea tarea){
+        System.out.println("Actualizando lista de hallazgos de la tarea " + tarea.getNombre());
+        hallazgosPanel.setTarea(tarea);
+        hallazgosPanel.actualizar();
+        revalidate();
+        repaint();
+    }
+
+    public void actualizarListaHallazgos(){
+        System.out.println("Actualizando lista de hallazgos");
+        hallazgosPanel.setTarea(null);
+        hallazgosPanel.actualizar();
+        revalidate();
+        repaint();
+    }
+
+    public void actualizarDetallesUsuario(Usuario usuario){
+        System.out.println("Actualizando detalles de usuario " + usuario.nombreCompleto());
+        // TODO: Actualizar detalles de usuario
         revalidate();
         repaint();
     }

@@ -21,6 +21,7 @@ import data.controladores.UsuarioControlador;
 import data.modelos.Hallazgo;
 
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
 import java.awt.*;
 import java.text.MessageFormat;
 
@@ -35,7 +36,7 @@ public class HallazgosRenderer extends JLabel implements ListCellRenderer<Hallaz
                 <html>
                 <body>
                 <p>Comentario: {0}</p>
-                <p>Responsable: {2}</p>
+                <p>Responsable: {1}</p>
                 <br/>
                 </body>
                 </html>
@@ -44,6 +45,8 @@ public class HallazgosRenderer extends JLabel implements ListCellRenderer<Hallaz
                 UsuarioControlador.getUsuario(hallazgo.getResponsableId()));
         setText(mensaje);
         setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
+        setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK), BorderFactory.createEmptyBorder(0, 15, 0, 5)));
+        setToolTipText("Doble click para seleccionar hallazgo");
         if (isSelected) {
             setBackground(list.getSelectionBackground());
             setForeground(list.getSelectionForeground());

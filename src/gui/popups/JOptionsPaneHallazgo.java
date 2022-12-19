@@ -19,14 +19,12 @@ package gui.popups;
 
 import data.controladores.UsuarioControlador;
 import data.modelos.Hallazgo;
-import data.modelos.Proyecto;
 import data.modelos.TipoUsuario;
 import data.modelos.Usuario;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class JOptionsPaneHallazgo {
     private static JLabel jLabelEncargadoHallazgo;

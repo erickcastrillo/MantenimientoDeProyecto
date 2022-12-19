@@ -17,39 +17,39 @@
 
 package gui.helpers;
 
-import data.controladores.HallazgosControlador;
+import data.controladores.TareasControlador;
 import data.controladores.UsuarioControlador;
+import data.modelos.Usuario;
+
+import javax.swing.*;
+import javax.swing.border.CompoundBorder;
 import java.awt.*;
 import java.text.MessageFormat;
-import javax.swing.*;
 
-import data.modelos.Tarea;
-
-public class TareaRenderer extends JLabel implements ListCellRenderer<Tarea> {
-    public TareaRenderer() {
-        setOpaque(true);
-    }
+public class UsuariosRenderer extends JLabel implements ListCellRenderer<Usuario> {
+    public UsuariosRenderer(){ setOpaque(true);}
 
     @Override
-    public Component getListCellRendererComponent(JList<? extends Tarea> list, Tarea tarea, int index, boolean isSelected, boolean cellHasFocus) {
+    public Component getListCellRendererComponent(JList<? extends Usuario> list, Usuario usuario, int index, boolean isSelected, boolean cellHasFocus) {
         String mensaje = MessageFormat.format("""
                 <html>
                 <body>
-                <h3>Nombre: {0}</h3>
-                <p>Descripción: {1}</p>
-                <p>Responsable: {2}</p>
-                <p>Hallazgos: {3}</p>
+                <p>Nombre: {0}</p>
+                <p>Primer apellido: {1}</p>
+                <p>Segundo apellido: {2}</p>
+                <p>Tipo usuario: {3}</p>
                 <br/>
                 </body>
                 </html>
-                """, 
-                tarea.getNombre(), 
-                tarea.getDescripción(),
-                UsuarioControlador.getUsuario(tarea.getResponsableId()),
-                HallazgosControlador.getHallazgosAsociados(tarea.getId()).size());
+                """,
+                usuario.getNombre(),
+                usuario.getPrimerApellido(),
+                usuario.getSegundoApellido(),
+                usuario.getTipoUsuario().toString()
+        );
         setText(mensaje);
-        setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
-        setToolTipText("Doble click para seleccionar tarea");
+        setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK), BorderFactory.createEmptyBorder(0, 15, 0, 5)));
+        setToolTipText("Doble click para seleccionar usuario");
         if (isSelected) {
             setBackground(list.getSelectionBackground());
             setForeground(list.getSelectionForeground());

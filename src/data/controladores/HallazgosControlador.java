@@ -18,11 +18,14 @@
 package data.controladores;
 
 import data.modelos.Hallazgo;
+import data.modelos.Proyecto;
 import data.modelos.Tarea;
 import data.modelos.Usuario;
 import data.repositorios.HallazgosRepositorio;
 import data.controladores.UsuarioControlador;
+import utilidades.EnviarCorreo;
 
+import javax.mail.MessagingException;
 import java.util.ArrayList;
 
 public class HallazgosControlador {
@@ -41,6 +44,47 @@ public class HallazgosControlador {
     // Agregar un hallazgo
     public static void agregarHallazgo(Hallazgo hallazgo) {
         hallazgosRepositorio.agregarHallazgo(hallazgo);
+        // Enviar correo al encargado del hallazgo, el encargado de la tarea y el
+        // encargado del proyecto
+        if(hallazgo.getResponsableId() != null){
+            // Obtener la tarea
+            Tarea tarea = TareasControlador.obtenerTarea(hallazgo.getTareaId());
+            // Obtener proyecto
+            Proyecto proyecto = ProyectoControlador.obtenerProyecto(tarea.getProyectoId());
+            // Obtener el responsable del hallazgo
+            Usuario responsableHallazgo = UsuarioControlador.getUsuario(hallazgo.getResponsableId());
+            // Obtener el responsable de la tarea
+            Usuario responsableTarea = UsuarioControlador.getUsuario(tarea.getResponsableId());
+            // Obtener el responsable del proyecto
+            Usuario responsableProyecto = UsuarioControlador.getUsuario(proyecto.getResponsableId());
+
+            // Enviar correo
+            String asunto = "Nuevo hallazgo asignado";
+            String cuerpo = "Hola " + responsableHallazgo.getNombre() + ",\n\n"
+                    + "Se ha creado un hallazgo nuevo y se te ha asignado como responsable" + "\n\n"
+                    + "Comentario: " + hallazgo.getComentario() + "\n"
+                    + "Tarea: " + tarea.getNombre() + "\n"
+                    + "Proyecto: " + proyecto.getNombre() + "\n"
+                    + "Responsable: " + responsableHallazgo.nombreCompleto() + "\n\n"
+                    + "Saludos,\n"
+                    + "Equipo de desarrollo de la aplicación";
+
+            // Como el proceso puede tardar, se ejecuta en un hilo aparte y asi evitar bloquear el hilo principal
+            Thread thread = new Thread(() -> {
+                try {
+                    EnviarCorreo.enviarCorreoJava(
+                            responsableHallazgo.getCorreoElectrónico(),
+                            responsableTarea.getCorreoElectrónico(),
+                            responsableProyecto.getCorreoElectrónico(),
+                            asunto,
+                            cuerpo
+                    );
+                } catch (MessagingException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            thread.start();
+        }
     }
     // Eliminar un hallazgo
     public static void eliminarHallazgo(String id) {
@@ -65,6 +109,16 @@ public class HallazgosControlador {
         ArrayList<Hallazgo> hallazgosAsociados = new ArrayList<>();
         for (Hallazgo hallazgo : hallazgosRepositorio.getHallazgos()) {
             if (hallazgo.getTareaId().equals(id)) {
+                hallazgosAsociados.add(hallazgo);
+            }
+        }
+        return hallazgosAsociados;
+    }
+
+    public static ArrayList<Hallazgo> getHallazgosPorResponsable(String id) {
+        ArrayList<Hallazgo> hallazgosAsociados = new ArrayList<>();
+        for (Hallazgo hallazgo : hallazgosRepositorio.getHallazgos()) {
+            if (hallazgo.getResponsableId().equals(id)) {
                 hallazgosAsociados.add(hallazgo);
             }
         }

@@ -38,6 +38,10 @@ public class Constantes {
     public static final Dimension DIMENSION_LISTA_TAREAS_LISTA = new Dimension(300, 330);
     public static final Dimension DIMENSION_LISTA_HALLAZGOS = new Dimension(300, 400);
     public static final Dimension DIMENSION_LISTA_HALLAZGOS_LISTA = new Dimension(300, 330);
+    public static final Dimension DIMENSION_LISTA_USUARIOS = new Dimension(400, 400);
+    public static final Dimension DIMENSION_LISTA_USUARIOS_LISTA = new Dimension(400, 330);
+    public static final Dimension DIMENSION_LISTA_USUARIOS_DETALLE = new Dimension(400, 400);
+    public static final Dimension DIMENSION_LISTA_USUARIOS_LISTA_DETALLE = new Dimension(400, 330);
     public static final Dimension DIMENSION_BOTÓN = new Dimension(150, 30);
 
     // Colores

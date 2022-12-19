@@ -84,7 +84,8 @@ public class ListaTareasPanel extends JPanel implements Custumizable {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
-                    // TODO: Agregar acción para cuando se le da doble click
+                    Tarea tarea = listaTareas.getSelectedValue();
+                    ventana.actualizarListaHallazgosTarea(tarea);
                 }
             }
         });
@@ -130,17 +131,6 @@ public class ListaTareasPanel extends JPanel implements Custumizable {
             eliminarTarea();
         });
 
-        // Agregamos el botón de agregar hallazgo a tarea
-        JButton agregarHallazgoTareaButton = new JButton("Agregar hallazgo");
-        agregarHallazgoTareaButton.setFont(Constantes.FUENTE_NORMAL);
-        agregarHallazgoTareaButton.setPreferredSize(Constantes.DIMENSION_BOTÓN);
-        agregarHallazgoTareaButton.setMaximumSize(Constantes.DIMENSION_BOTÓN);
-        agregarHallazgoTareaButton.setMinimumSize(Constantes.DIMENSION_BOTÓN);
-        agregarHallazgoTareaButton.addActionListener(e -> {
-            agregarHallazgo();
-        });
-        // add(eliminarTareaButton);
-
         JPanel panelBotones = new JPanel();
         panelBotones.setBackground(Constantes.COLOR_FONDO);
         panel.setPreferredSize(Constantes.DIMENSION_LISTA_TAREAS_LISTA);
@@ -149,7 +139,6 @@ public class ListaTareasPanel extends JPanel implements Custumizable {
         panelBotones.add(agregarTareaButton);
         panelBotones.add(editarTareaButton);
         panelBotones.add(eliminarTareaButton);
-        panelBotones.add(agregarHallazgoTareaButton);
 
         // Agregar panel botones
         add(panelBotones, BorderLayout.SOUTH);
@@ -203,6 +192,8 @@ public class ListaTareasPanel extends JPanel implements Custumizable {
             TareasControlador.agregarTarea(tarea);
             model.addElement(tarea);
         }
+        ventana.revalidate();
+        ventana.repaint();
     }
     
     public void editarTarea(){
@@ -257,35 +248,6 @@ public class ListaTareasPanel extends JPanel implements Custumizable {
                         JOptionPane.INFORMATION_MESSAGE
                 );
             }
-        }
-    }
-
-    public void agregarHallazgo(){
-        Tarea tarea = listaTareas.getSelectedValue();
-        if (tarea == null) {
-            JOptionPane.showConfirmDialog(null,
-                    "Debes elegir una tarea para agregar un hallazgo",
-                    Constantes.TITULO,
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.ERROR_MESSAGE
-            );
-            return;
-        }
-        HashMap<String, String> hallazgoData = JOptionsPaneHallazgo.showHallazgoNuevoPrompt(
-                null,
-                "Tarea " + tarea.getNombre(),
-                "Ingrese los datos del hallazgo",
-                usuario,
-                null
-        );
-        if(hallazgoData != null){
-            Hallazgo hallazgo = new Hallazgo();
-            hallazgo.setComentario(hallazgoData.get("comentario"));
-            hallazgo.setTareaId(tarea.getId());
-            hallazgo.setResponsableId(hallazgoData.get("responsableId"));
-
-            HallazgosControlador.agregarHallazgo(hallazgo);
-            this.actualizar();
         }
     }
 }

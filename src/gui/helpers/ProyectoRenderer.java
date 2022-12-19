@@ -17,6 +17,7 @@
 
 package gui.helpers;
 
+import data.controladores.TareasControlador;
 import data.controladores.UsuarioControlador;
 import java.awt.*;
 import java.text.MessageFormat;
@@ -38,26 +39,22 @@ public class ProyectoRenderer extends JLabel implements ListCellRenderer<Proyect
         String mensaje = MessageFormat.format("""
                 <html>
                 <body>
-                <h3>{0}</h3>
-                <p>{1}</p>
-                <p>{2}</p>
+                <h3>Nombre: {0}</h3>
+                <p>Descripción: {1}</p>
+                <p>Responsable: {2}</p>
+                <p>Tarea: {3}</p>
                 <br/>
                 </body>
                 </html>
                 """, 
                 proyecto.getNombre(), 
                 proyecto.getDescripción(), 
-                UsuarioControlador.getUsuario(proyecto.getResponsableId()));
-        setText(mensaje);
-        /*ImageIcon imageIcon = new ImageIcon(
-                Objects.requireNonNull(getClass().getResource("/img/workflow.png"))
+                UsuarioControlador.getUsuario(proyecto.getResponsableId()),
+                TareasControlador.obtenerTareasPorProyecto(proyecto.getId()).size()
         );
-        Image image = imageIcon.getImage(); // transform it
-        Image newimg = image.getScaledInstance(32, 32,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-        imageIcon = new ImageIcon(newimg);  // transform it back
-
-        setIcon(imageIcon);*/
+        setText(mensaje);
         setBorder(new CompoundBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK), BorderFactory.createEmptyBorder(0, 15, 0, 5)));
+        setToolTipText("Doble click para seleccionar proyecto");
         if (isSelected) {
             setBackground(list.getSelectionBackground());
             setForeground(list.getSelectionForeground());
